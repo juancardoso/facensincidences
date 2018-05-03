@@ -29,10 +29,10 @@ class Tickets extends CI_Controller {
 
 			if($this->db->trans_status()){
 				$this->db->trans_commit();
-				$this->session->flashdata('item',"<div class=\"alert alert-danger\">Seu ticket #{$id} foi adicionado com sucesso!</div>");
+				$this->message->add('Seu ticket #'.$id.' foi enviado com sucesso!','success');
 			}else{
 				$this->db->trans_rollback();
-				$this->session->flashdata('item','<div class="alert alert-danger">Não foi possível adicionar seu ticket!</div>');
+				$this->message->add('Não foi possível adicionar seu ticket!','error');
 			}
 
 			redirect('usuarios/tickets/listar');
@@ -48,5 +48,17 @@ class Tickets extends CI_Controller {
 		$data['titulo'] = 'Lista -> Tickets';
 		$data['active'] = 'meusTicket';
 		$this->load->view('usuarios/tickets/listar',$data);
+	}
+
+	public function excluir($id){
+		$this->db->trans_begin();
+		$ret = $this->ticket->excluirTicket($id);
+		if($this->db->trans_status()){
+			$this->db->trans_commit();
+			$this->message->add('Seu ticket #'.$id.' foi excluído com sucesso!','success');
+		}else{
+			$this->db->trans_rollback();
+			$this->message->add('Não foi possível excluir seu ticket!','error');
+		}
 	}
 }

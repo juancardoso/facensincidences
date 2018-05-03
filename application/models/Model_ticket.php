@@ -21,5 +21,10 @@ class Model_ticket extends CI_Model {
         return ($result && $result->num_rows()) ? $result->result() : [];
     }
 
+    public function excluirTicket($id){
+        $this->db->where('id',$id);
+        return $this->db->delete('tickets');
+    }
+
 }
     

@@ -5,7 +5,7 @@
                 <h4>Meus Ticket</h4>
             </div>
 
-            <?php $this->session->flashdata('item'); ?>
+            <?php $this->message->get(); ?>
 
             <div class="panel" style="padding:20px;">
                 <table class="table" id="table">
@@ -16,6 +16,7 @@
                             <th>Localização</th>
                             <th>Descricao</th>
                             <th>Status</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -26,6 +27,7 @@
                                 <td><?= $row->localizacao ?></td>
                                 <td><?= $row->descricao ?></td>
                                 <td><?= $row->status ?></td>
+                                <td><?= ($row->status == 'PENDENTE') ? '<a class="btn btn-sm btn-danger" href="#" onclick="excluir('.$row->id.')">Excluir</a>': "" ?></td>
                             </tr>
                         <?php endforeach; ?>
                     </tdoby>
@@ -36,6 +38,7 @@
                             <th>Localização</th>
                             <th>Descricao</th>
                             <th>Status</th>
+                            <th></th>
                         </tr>
                     </tfoot>
                 </table>
@@ -65,5 +68,16 @@ $(document).ready(function () {
     });
 
 });
+
+function excluir(id){
+    var getUrl = window.location;
+    var base_url = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + '/';
+    if(confirm('Deseja realmente excluir este ticket?')){
+        var url = base_url + 'usuarios/tickets/excluir/' + id; 
+        $.get(url,function(data){
+            window.location.reload();
+        });
+    }
+}
 
 </script>
