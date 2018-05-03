@@ -5,11 +5,11 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="<?= base_url('css/bootstrap.min.css') ?>"/>
         <link href="<?= base_url('css/signin.css') ?>" rel="stylesheet">
-        <title>Document</title>
+        <title>Facens Incidences</title>
     </head>
     <body style="background-color: #DCDCDC">
     <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
-        <a class="navbar-brand" href="#">{Usename}</a>
+        <a class="navbar-brand" href="#">FACENS INCIDENCES</a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item <?= $active === 'dashboard' ? 'active' : '' ?>">
@@ -19,15 +19,15 @@
                     <a class="nav-link" href="#">Listar Incidências</a>
                 </li>
                 <li class="nav-item <?= $active === 'criarTicket' ? 'active' : '' ?>">
-                    <a class="nav-link" href="<?= base_url('usuarios/tickets/criarTicket') ?>">Criar Ticket</a>
+                    <a class="nav-link" href="<?= base_url('usuarios/tickets/adicionar') ?>">Criar Ticket</a>
                 </li>
                 <li class="nav-item <?= $active === 'meusTickets' ? 'active' : '' ?>">
-                    <a class="nav-link" href="#">Meus Tickets</a>
+                    <a class="nav-link" href="<?= base_url('usuarios/tickets/listar') ?>">Meus Tickets</a>
                 </li>
             </ul>
             <div class="dropdown">
                 <button class="btn btn-secondary btn-sm dropdown-toggle" style="background-color: #343a40; border-color: #343a40" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Opções
+                    USER
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="#">Editar Perfil</a>

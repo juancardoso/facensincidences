@@ -10,22 +10,22 @@
                     <div class="col-md-10">
                         <div class="offset-md-3">
                             <div class="form-group">
-                                <label for="email">Titulo</label>
-                                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                                <label for="titulo">Titulo</label>
+                                <input type="titulo" class="form-control" name="titulo" id="titulo" aria-describedby="emailHelp" placeholder="Adicione um título">
                             </div>
                             <div class="form-group">
-                                <label for="categoria">Localizacao</label>
-                                <?php $options = array(""=> "Selecione","um" => "Predio A","dois" => "Predio B","tres" => "Predio C");
-                                echo form_dropdown('shirts', $options, 'large','id="categoria" class="custom-select"'); ?>
+                                <label for="localizacao">Localizacao</label>
+                                <?php $options = array(""=> "Selecione","1" => "Predio A","2" => "Predio B","3" => "Predio C");
+                                echo form_dropdown('localizacao', $options, 'large','id="localizacao" class="custom-select"'); ?>
                             </div>
                             <div class="form-group">
                                 <label for="categoria">Categorias</label>
-                                <?php $options = array(""=> "Selecione","um" => "Categoria 1","dois" => "Categoria 2","tres" => "Categoria 3");
-                                echo form_dropdown('shirts', $options, 'large','id="categoria" class="custom-select"'); ?>
+                                <?php $options = array(""=> "Selecione","1" => "Categoria 1","2" => "Categoria 2","3" => "Categoria 3");
+                                echo form_dropdown('categoria', $options, 'large','id="categoria" class="custom-select"'); ?>
                             </div>
                             <div class="form-group">
                                 <label for="descricao">Descricao</label>
-                                <textarea class="form-control" id="descricao" rows="3"></textarea>
+                                <textarea class="form-control" id="descricao" name="descricao" rows="3"></textarea>
                             </div>
                             <button type="submit" class="btn btn-success float-right">Submit</button>
                         </div>
