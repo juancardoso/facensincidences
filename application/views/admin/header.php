@@ -4,6 +4,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="<?= base_url('css/bootstrap.min.css') ?>"/>
+        <link rel="stylesheet" href="<?php echo base_url('css/dataTables.bootstrap.css');?>" type="text/css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="<?= base_url('css/signin.css') ?>" rel="stylesheet">
         <title>Document</title>
     </head>
@@ -18,8 +20,8 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Listar Incidências</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Listar Tickets</a>
+                <li class="nav-item" <?= $active === 'listarTickets' ? 'active' : '' ?>>
+                    <a class="nav-link" href="<?= base_url('admin/tickets/listar') ?>">Listar Tickets</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Listar Usuários</a>
