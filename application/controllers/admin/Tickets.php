@@ -6,11 +6,11 @@ class Tickets extends CI_Controller {
 	public function __construct()
     {
 		parent::__construct();
-		$this->load->model('Model_ticket','ticket');
+		$this->load->model('Model_tickets','tickets');
     }
 
     public function listar(){
-        $tickets = $this->ticket->getTickets();
+        $tickets = $this->tickets->getTickets();
 		$data['tickets'] = $tickets;
 		$data['titulo'] = 'Lista -> Tickets';
 		$data['active'] = 'listarTicket';
@@ -18,7 +18,7 @@ class Tickets extends CI_Controller {
     }
 
     public function ver($id){
-        $ticket = $this->ticket->getTickets($id);
+        $ticket = $this->tickets->getTickets($id);
 
         if(!$ticket){
             $this->message->add('Não foi possível encontrar o ticket selecionado!','error');
@@ -27,10 +27,38 @@ class Tickets extends CI_Controller {
 
         $ticket = $ticket[0];
         $ticket->usuario = 'Teste';
+        $comentarios = $this->tickets->getComentarios($ticket->id);
+        $usuario = (object)['id' => 2];
+        
+        $data['usuario'] = $usuario;
         $data['ticket'] = $ticket;
+        $data['comentarios'] = $comentarios;
         $data['titulo'] = 'Tickets -> Ver';
 		$data['active'] = 'listarTicket';
 		$this->load->view('admin/tickets/ver',$data);
+    }
+
+    public function addComentarioAjax(){
+        $mensagem = isset($_POST['mensagem']) ? $_POST['mensagem'] : '';
+        $ticket = isset($_POST['ticket']) ? $_POST['ticket'] : '';
+        $visible = isset($_POST['visible']) ? 'ADM' : 'TODOS';
+        $user = 1;
+
+        if(!$mensagem) { echo json_encode('<div class="alert alert-danger">Não é possivel adicionar um comentário vazio!</div>'); die; };
+
+        $id = $this->tickets->addComentario([
+            'mensagem' => $mensagem,
+            'id_ticket' => $ticket,
+            'id_usuario' => $user,
+            'visibilidade' => $visible
+        ]);
+
+        if($id){
+            echo json_encode('<div class="alert alert-success">Comentário adicionado com sucesso!</div>');
+        }else{
+            echo json_encode('<div class="alert alert-danger">Não foi possivel adicionar seu comentário!</div>');
+        }
+
     }
 
 }

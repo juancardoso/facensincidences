@@ -1,6 +1,6 @@
 <?php
 
-class Model_ticket extends CI_Model {
+class Model_tickets extends CI_Model {
     
     public function __construct()
     {
@@ -24,6 +24,19 @@ class Model_ticket extends CI_Model {
     public function excluirTicket($id){
         $this->db->where('id',$id);
         return $this->db->delete('tickets');
+    }
+
+    public function getComentarios($idTicket, $idComentario = FALSE){
+        if($idComentario)
+            $this->db->where('id',$idComentario);
+        $this->db->where('id_ticket',$idTicket);
+        $result = $this->db->get('tickets_comentarios');
+        return ($result && $result->num_rows()) ? $result->result() : [];
+    }
+
+    public function addComentario($data){
+        $this->db->insert('tickets_comentarios',$data);
+        return $this->db->insert_id();
     }
 
 }

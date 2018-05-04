@@ -39,19 +39,33 @@
 
                 <div class="comment-ticket panel-side panel col-sm-6">
                     <h4 class="center">Comentários</h4>
-
+                    <div id="alert-comment"></div>
                     <div>
-                        <textarea class="form-control" rows="2"></textarea>
-                        <a class="btn btn-sm btn-info" href="#" style="margin:5px;">Adicionar Comentário</a>
-                        <a class="btn btn-sm btn-secondary" href="#" style="margin:5px;" title="Visibilidade"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                        <textarea class="form-control" name="mensagem" id="mensagem" rows="2"></textarea>
+                        <input id="visible" type="checkbox" value="0" hidden>
+                        <a class="btn btn-sm btn-primary" href="#" onclick="adicionarComentario()" style="margin:5px;">Adicionar Comentário</a>
+                        <a class="btn btn-sm btn-secondary" href="#" onclick="toggleVisibility()" style="margin:5px;" id="btn-visible" title="Visibilidade"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                    </div>
+
+                    <div class="panel-body comment-panel">
+                        <?php foreach($comentarios as $row): ?>
+                            <div class="comment col-sm-12 <?= ($row->id_usuario == $usuario->id) ? 'comment-user': '' ?>">
+                                <div class="row comment-header " >
+                                    <small><?= '<b>'.$row->id_usuario.'</b> '.$row->data ?></small>
+                                </div>
+                                <div class="comment-msg badge badge-info">
+                                    <?= $row->mensagem ?>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
 
             </div>
 
             <div class="actions-ticket panel center col-sm-12">
-                <a class="btn btn-md btn-success" href="#">Aprovar</a>
-                <a class="btn btn-md btn-danger" href="#">Reprovar</a>
+                <a class="btn btn-sm btn-success" href="#">Aprovar</a>
+                <a class="btn btn-sm btn-danger" href="#">Reprovar</a>
             </div>
 
         </div>
@@ -69,4 +83,59 @@
     .center {
         text-align:center;
     }
+
+    .comment {
+        margin:10px;
+    }
+
+    .comment-panel {
+        background-color: #e9ecef;
+        max-height: 370px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        border: 1px solid #ccc;
+        border-radius: 16px;
+    }
+
+    .comment-header {
+    }
+
+    .comment-msg {
+        margin:10px;
+        font-size : 15px;
+        font-style: italic;
+        font-weight: lighter;
+    }
+
+    .comment-user {
+        text-align: right;
+    }
 </style>
+
+<script>
+
+    function toggleVisibility(){
+        var val = !$('#visible').is(':checked');
+        $('#visible').prop('checked', val);
+
+        if(val){
+            $('#btn-visible').html('<i class="fa fa-eye-slash" aria-hidden="true">');
+        }else{
+            $('#btn-visible').html('<i class="fa fa-eye" aria-hidden="true">');
+        }
+    }
+
+    function adicionarComentario(){
+        var msg = $('#mensagem').val();
+        var visible = !$('#visible').is(':checked');
+        var ticket = '<?= $ticket->id ?>';
+        var getUrl = window.location;
+        var base_url = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + '/';
+        var url = base_url + 'admin/tickets/addComentarioAjax';
+
+        $.post(url,{'mensagem':msg, 'visible':visible, 'ticket':ticket},function(data){
+            $('#alert-comment').html(JSON.parse(data));
+        });
+    }
+
+</script>

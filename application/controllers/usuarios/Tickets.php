@@ -6,7 +6,7 @@ class Tickets extends CI_Controller {
 	public function __construct()
     {
 		parent::__construct();
-		$this->load->model('Model_ticket','ticket');
+		$this->load->model('Model_tickets','tickets');
     }
 
 	public function adicionar()
@@ -25,7 +25,7 @@ class Tickets extends CI_Controller {
 			];
 
 			$this->db->trans_begin();
-			$id = $this->ticket->addTicket($data);
+			$id = $this->tickets->addTicket($data);
 
 			if($this->db->trans_status()){
 				$this->db->trans_commit();
@@ -43,7 +43,7 @@ class Tickets extends CI_Controller {
 	}
 
 	public function listar(){
-		$tickets = $this->ticket->getTickets();
+		$tickets = $this->tickets->getTickets();
 		$data['tickets'] = $tickets;
 		$data['titulo'] = 'Lista -> Tickets';
 		$data['active'] = 'meusTicket';
@@ -52,7 +52,7 @@ class Tickets extends CI_Controller {
 
 	public function excluir($id){
 		$this->db->trans_begin();
-		$ret = $this->ticket->excluirTicket($id);
+		$ret = $this->tickets->excluirTicket($id);
 		if($this->db->trans_status()){
 			$this->db->trans_commit();
 			$this->message->add('Seu ticket #'.$id.' foi excluído com sucesso!','success');
