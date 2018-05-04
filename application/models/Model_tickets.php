@@ -30,6 +30,7 @@ class Model_tickets extends CI_Model {
         if($idComentario)
             $this->db->where('id',$idComentario);
         $this->db->where('id_ticket',$idTicket);
+        $this->db->order_by('id desc');
         $result = $this->db->get('tickets_comentarios');
         return ($result && $result->num_rows()) ? $result->result() : [];
     }

@@ -27,12 +27,10 @@ class Tickets extends CI_Controller {
 
         $ticket = $ticket[0];
         $ticket->usuario = 'Teste';
-        $comentarios = $this->tickets->getComentarios($ticket->id);
         $usuario = (object)['id' => 2];
         
         $data['usuario'] = $usuario;
         $data['ticket'] = $ticket;
-        $data['comentarios'] = $comentarios;
         $data['titulo'] = 'Tickets -> Ver';
 		$data['active'] = 'listarTicket';
 		$this->load->view('admin/tickets/ver',$data);
@@ -58,6 +56,15 @@ class Tickets extends CI_Controller {
         }else{
             echo json_encode('<div class="alert alert-danger">Não foi possivel adicionar seu comentário!</div>');
         }
+
+    }
+
+    public function getComentariosAjax(){
+        $ticket = isset($_POST['ticket']) ? $_POST['ticket'] : '';
+
+        $comentarios = $this->tickets->getComentarios($ticket);
+
+        echo json_encode($comentarios);
 
     }
 

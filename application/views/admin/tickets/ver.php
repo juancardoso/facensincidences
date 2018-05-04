@@ -48,22 +48,13 @@
                     </div>
 
                     <div class="panel-body comment-panel">
-                        <?php foreach($comentarios as $row): ?>
-                            <div class="comment col-sm-12 <?= ($row->id_usuario == $usuario->id) ? 'comment-user': '' ?>">
-                                <div class="row comment-header " >
-                                    <small><?= '<b>'.$row->id_usuario.'</b> '.$row->data ?></small>
-                                </div>
-                                <div class="comment-msg badge badge-info">
-                                    <?= $row->mensagem ?>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
+                        
                     </div>
                 </div>
 
             </div>
 
-            <div class="actions-ticket panel center col-sm-12">
+            <div class="ticket-actions panel center col-sm-12">
                 <a class="btn btn-sm btn-success" href="#">Aprovar</a>
                 <a class="btn btn-sm btn-danger" href="#">Reprovar</a>
             </div>
@@ -110,9 +101,17 @@
     .comment-user {
         text-align: right;
     }
+
+    .ticket-actions{
+     
+    }
 </style>
 
 <script>
+
+    $(function(){
+        getComentarios();
+    })
 
     function toggleVisibility(){
         var val = !$('#visible').is(':checked');
@@ -135,7 +134,28 @@
 
         $.post(url,{'mensagem':msg, 'visible':visible, 'ticket':ticket},function(data){
             $('#alert-comment').html(JSON.parse(data));
+        }).done(function(){
+            getComentarios();
         });
+    }
+
+    function getComentarios(){
+        var ticket = '<?= $ticket->id ?>';
+        var getUrl = window.location;
+        var base_url = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + '/';
+        var url = base_url + 'admin/tickets/getComentariosAjax';
+
+        $.post(url,{'ticket':ticket},function(data){
+            data = JSON.parse(data);
+            $('.comment-panel').empty()
+            data.forEach(function(row){
+                var user = (row.id_usuario == '<?= json_decode($usuario->id) ?>') ? 'comment-user' : '';
+                $('.comment-panel').append('<div class="comment col-sm-12 '+user+'" id="comment-'+row.id+'">');
+                $('#comment-'+row.id).append('<div class="row comment-header "><small><b>'+row.id_usuario+'</b> '+row.data+'</small></div>');
+                $('#comment-'+row.id).append('<div class="comment-msg badge badge-info">' + row.mensagem + '</div>');
+                $('.comment-panel').append('</div>');
+            });
+        })
     }
 
 </script>
