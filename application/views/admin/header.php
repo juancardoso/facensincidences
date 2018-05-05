@@ -32,7 +32,7 @@
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="#">Editar Perfil</a>
-                    <a class="dropdown-item" href="#">Sair</a>
+                    <a class="dropdown-item" href="<?= base_url('admin/Login/sair') ?>">Sair</a>
                 </div>
             </div>
             <div style="margin-left: 10px">

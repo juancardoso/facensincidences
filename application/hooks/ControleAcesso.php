@@ -18,22 +18,46 @@ class ControleAcesso {
         $method =$this->CI->router->method;
 
         if($directory === 'usuarios/' && $class !== 'Login'){
-            $hash = $this->CI->session->userdata('login_user');
-            $id = $this->CI->session->userdata('login_id');
+             $this->controleUsuario(); 
+        }else if($directory === 'admin/' && $class !== 'Login'){
+            $this->controleAdmin();
+        }
+    }
+
+    private function controleAdmin(){
+        $hash = $this->CI->session->userdata('login_admin');
+        $id = $this->CI->session->userdata('login_idAdmin');
             
-            $this->CI->db->where('user_id',$id);
-            $result = $this->CI->db->get('user');
+        $this->CI->db->where('admin_id',$id);
+        $result = $this->CI->db->get('admin');
+        if($result && $result->result_id->num_rows > 0){
+            $result = $result->row();
+            $hashUser = base64_encode("$result->admin_id:$result->admin_user:$result->admin_password");
+            
+            if($hash !== $hashUser){
+                redirect('admin/Login');
+            }
+        }else{
+            redirect('admin/Login');
+        }
+    }
 
-            if($result && $result->result_id->num_rows > 0){
-                $result = $result->row();
-                $hashUser = base64_encode("$result->user_ra:$result->user_password");
+    private function controleUsuario(){
+        $hash = $this->CI->session->userdata('login_user');
+        $id = $this->CI->session->userdata('login_id');
+            
+        $this->CI->db->where('user_id',$id);
+        $result = $this->CI->db->get('user');
 
-                if($hash !== $hashUser){
-                    redirect('usuarios/Login');
-                }
-            }else{
+        if($result && $result->result_id->num_rows > 0){
+            $result = $result->row();
+            $hashUser = base64_encode("$result->user_ra:$result->user_password");
+
+            if($hash !== $hashUser){
                 redirect('usuarios/Login');
-            }  
+            }
+        }else{
+            redirect('usuarios/Login');
         }
     }
 }
