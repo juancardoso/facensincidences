@@ -6,12 +6,11 @@
         
         <link rel="stylesheet" href="<?= base_url('css/bootstrap.min.css') ?>"/>
         <link rel="stylesheet" href="<?php echo base_url('css/dataTables.bootstrap.css');?>" type="text/css" />
-
         
         <title>Facens Incidences</title>
     </head>
-    <body style="background-color: #DCDCDC">
-    <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+    <body>
+    <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
         <a class="navbar-brand" href="#">FACENS INCIDENCES</a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
@@ -29,7 +28,7 @@
                 </li>
             </ul>
             <div class="dropdown">
-                <button class="btn btn-secondary btn-sm dropdown-toggle" style="background-color: #343a40; border-color: #343a40" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <?php 
                         $nome = explode(' ',$this->user->nome); 
                         echo $nome[0];
