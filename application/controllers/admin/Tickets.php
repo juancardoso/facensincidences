@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Tickets extends CI_Controller {
+class Tickets extends MY_Controller {
 
 	public function __construct()
     {

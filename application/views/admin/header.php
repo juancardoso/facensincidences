@@ -28,7 +28,10 @@
             </ul>
             <div class="dropdown">
                 <button class="btn btn-secondary btn-sm dropdown-toggle" style="background-color: #343a40; border-color: #343a40" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    User
+                    <?php 
+                        $nome = explode(' ',$this->admin->nome); 
+                        echo $nome[0];
+                     ?>
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="#">Editar Perfil</a>
