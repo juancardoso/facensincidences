@@ -1,11 +1,11 @@
-<?php $this->load->view('usuarios/header'); ?> 
+<?php $this->load->view('admin/header'); ?> 
     <div class="container">
         <div class="card">
             <div class="card-header text-center">
-                <h4>Meus Ticket</h4>
+                <h4>Incidencias</h4>
             </div>
 
-            <?php $this->message->get_user(); ?>
+            <?php $this->message->get_admin(); ?>
 
             <div class="panel" style="padding:20px;">
                 <table class="table" id="table">
@@ -17,19 +17,17 @@
                             <th>Categoria</th>
                             <th>Status</th>
                             <th></th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach($tickets as $row): ?>
+                        <?php foreach($incidences as $row): ?>
                             <tr>
                                 <td><?= $row->id ?></td>
                                 <td><?= $row->titulo ?></td>
-                                <td><?= $row->localizacao ?></td>
-                                <td><?= $row->categoria ?></td>
+                                <td><?= $row->id_localizacao ?></td>
+                                <td><?= $row->id_categoria ?></td>
                                 <td><?= $row->status ?></td>
-                                <td><a class="btn btn-sm btn-info" href="<?= base_url('usuarios/tickets/ver/'.$row->id) ?>">Ver</a></td>
-                                <td><?= ($row->status == 'PENDENTE') ? '<a class="btn btn-sm btn-danger" href="#" onclick="excluir('.$row->id.')">Excluir</a>': "" ?></td>
+                                <td><a class="btn btn-sm btn-info" href="<?= base_url('admin/incidences/ver/'.$row->id) ?>">Ver</a></td>
                             </tr>
                         <?php endforeach; ?>
                     </tdoby>
@@ -38,7 +36,7 @@
 
         </div>
     </div>
-<?php $this->load->view('usuarios/footer'); ?>
+<?php $this->load->view('admin/footer'); ?>
 
 <script>
 $(document).ready(function () {
@@ -60,16 +58,5 @@ $(document).ready(function () {
     });
 
 });
-
-function excluir(id){
-    var getUrl = window.location;
-    var base_url = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + '/';
-    if(confirm('Deseja realmente excluir este ticket?')){
-        var url = base_url + 'usuarios/tickets/excluir/' + id; 
-        $.get(url,function(data){
-            window.location.reload();
-        });
-    }
-}
 
 </script>

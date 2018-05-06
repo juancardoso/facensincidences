@@ -1,4 +1,4 @@
-<?php $this->load->view('admin/header'); ?> 
+<?php $this->load->view('usuarios/header'); ?> 
 
     <div class="container">
         <div class="card">
@@ -7,7 +7,7 @@
             </div>
 
             <div class="panel">
-                <?php $this->message->get_admin(); ?>
+                <?php $this->message->get_user(); ?>
                 <div class="info-ticket panel-side panel col-sm-6">
 
                     <div class="form-group col-sm-6">
@@ -44,7 +44,6 @@
                         <textarea class="form-control" name="mensagem" id="mensagem" rows="2"></textarea>
                         <input id="visible" type="checkbox" value="0" hidden>
                         <a class="btn btn-sm btn-primary" href="#" onclick="adicionarComentario()" style="margin:5px;">Adicionar Comentário</a>
-                        <a class="btn btn-sm btn-secondary" href="#" onclick="toggleVisibility()" style="margin:5px;" id="btn-visible" title="Visibilidade"><i class="fa fa-eye" aria-hidden="true"></i></a>
                     </div>
 
                     <div class="panel-body comment-panel">
@@ -55,14 +54,13 @@
             </div>
 
             <div class="ticket-actions panel center col-sm-12">
-                <a class="btn btn-sm btn-success" href="<?= base_url('admin/tickets/aprovar/'.$ticket->id); ?>">Aprovar</a>
-                <a class="btn btn-sm btn-danger" href="#">Reprovar</a>
+                <a class="btn btn-sm btn-danger" href="<?= base_url("usuarios/tickets/excluir/{$ticket->id}/1") ?>">Cancelar</a>
             </div>
 
         </div>
     </div>
 
-<?php $this->load->view('admin/footer'); ?>
+<?php $this->load->view('usuarios/footer'); ?>
 
 <style>
     .panel-side {
@@ -113,26 +111,14 @@
         getComentarios();
     })
 
-    function toggleVisibility(){
-        var val = !$('#visible').is(':checked');
-        $('#visible').prop('checked', val);
-
-        if(val){
-            $('#btn-visible').html('<i class="fa fa-eye-slash" aria-hidden="true">');
-        }else{
-            $('#btn-visible').html('<i class="fa fa-eye" aria-hidden="true">');
-        }
-    }
-
     function adicionarComentario(){
         var msg = $('#mensagem').val();
-        var visible = $('#visible').is(':checked') ? 'ADM' : 'TODOS';
         var ticket = '<?= $ticket->id ?>';
         var getUrl = window.location;
         var base_url = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + '/';
-        var url = base_url + 'admin/tickets/addComentarioAjax';
+        var url = base_url + 'usuarios/tickets/addComentarioAjax';
 
-        $.post(url,{'mensagem':msg, 'visible':visible, 'ticket':ticket},function(data){
+        $.post(url,{'mensagem':msg, 'ticket':ticket},function(data){
             $('#alert-comment').html(JSON.parse(data));
         }).done(function(){
             getComentarios();
@@ -143,13 +129,13 @@
         var ticket = '<?= $ticket->id ?>';
         var getUrl = window.location;
         var base_url = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + '/';
-        var url = base_url + 'admin/tickets/getComentariosAjax';
+        var url = base_url + 'usuarios/tickets/getComentariosAjax';
 
         $.post(url,{'ticket':ticket},function(data){
             data = JSON.parse(data);
             $('.comment-panel').empty()
             data.forEach(function(row){
-                var user = (row.id_admin == '<?= json_decode($this->admin->id) ?>') ? 'comment-user' : '';
+                var user = (row.id_usuario == '<?= json_decode($this->user->id) ?>') ? 'comment-user' : '';
                 $('.comment-panel').append('<div class="comment col-sm-12 '+user+'" id="comment-'+row.id+'">');
                 $('#comment-'+row.id).append('<div class="row comment-header "><small><b>'+row.usuario+'</b> '+row.data+'</small></div>');
                 $('#comment-'+row.id).append('<div class="comment-msg badge badge-info">' + row.mensagem + '</div>');

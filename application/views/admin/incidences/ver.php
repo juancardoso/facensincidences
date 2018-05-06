@@ -3,41 +3,53 @@
     <div class="container">
         <div class="card">
             <div class="card-header text-center">
-                <h4>Ticket #<?= $ticket->id ?></h4>
+                <h4>Incidência #<?= $incidence->id ?></h4>
             </div>
 
             <div class="panel">
                 <?php $this->message->get_admin(); ?>
-                <div class="info-ticket panel-side panel col-sm-6">
-
+                <div class="info-incidence panel-side panel col-sm-6">
+                <form class="form-group" method="post" href="#">
                     <div class="form-group col-sm-6">
                         <label for="usuario">Usuário</label>
-                        <input type="text" class="form-control" id="usuario" value="<?= $ticket->usuario ?>" readonly/>
+                        <input type="text" class="form-control" id="usuario" value="<?= $incidence->usuario ?>" />
                     </div>
 
                     <div class="form-group col-sm-6">
                         <label for="titulo">Título</label>
-                        <input type="text" class="form-control" id="titulo" value="<?= $ticket->titulo ?>" readonly/>
+                        <input type="text" class="form-control" id="titulo" value="<?= $incidence->titulo ?>" />
                     </div>
 
                     <div class="form-group col-sm-6">
                         <label for="localizacao">Localização</label>
-                        <input type="text" class="form-control" id="localizacao" value="<?= $ticket->localizacao ?>" readonly />
+                        <input type="text" class="form-control" id="localizacao" value="<?= $incidence->id_localizacao ?>"  />
                     </div>
 
                     <div class="form-group col-sm-6">
                         <label for="categoria">Categoria</label>
-                        <input type="text" class="form-control" id="categoria" value="<?= $ticket->categoria ?>" readonly/>
+                        <input type="text" class="form-control" id="categoria" value="<?= $incidence->id_categoria ?>" />
                     </div>
 
                     <div class="form-group col-sm-12">
                         <label for="descricao">Descrição</label>
-                        <textarea rows="5" class="form-control" id="descricao" readonly> <?= $ticket->descricao ?> </textarea>
+                        <textarea rows="5" class="form-control" id="descricao" > <?= $incidence->descricao ?> </textarea>
                     </div>
 
-                </div>
+                    <div class="form-group col-sm-12">
+                        <label for="status">Status</label>
+                        <?= form_dropdown('status',$status,$incidence->status,'class="form-control"') ?>
+                    </div>
 
-                <div class="comment-ticket panel-side panel col-sm-6">
+                
+                    <div class="incidence-actions panel center col-sm-12">
+                        <a class="btn btn-sm btn-success" href="#">Salvar</a>
+                    </div>
+                    
+                </form>
+                </div>
+                
+
+                <div class="comment-incidence panel-side panel col-sm-6">
                     <h4 class="center">Comentários</h4>
                     <div id="alert-comment"></div>
                     <div>
@@ -52,11 +64,6 @@
                     </div>
                 </div>
 
-            </div>
-
-            <div class="ticket-actions panel center col-sm-12">
-                <a class="btn btn-sm btn-success" href="<?= base_url('admin/tickets/aprovar/'.$ticket->id); ?>">Aprovar</a>
-                <a class="btn btn-sm btn-danger" href="#">Reprovar</a>
             </div>
 
         </div>
@@ -102,7 +109,7 @@
         text-align: right;
     }
 
-    .ticket-actions{
+    .incidence-actions{
      
     }
 </style>
@@ -127,12 +134,12 @@
     function adicionarComentario(){
         var msg = $('#mensagem').val();
         var visible = $('#visible').is(':checked') ? 'ADM' : 'TODOS';
-        var ticket = '<?= $ticket->id ?>';
+        var incidence = '<?= $incidence->id ?>';
         var getUrl = window.location;
         var base_url = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + '/';
-        var url = base_url + 'admin/tickets/addComentarioAjax';
+        var url = base_url + 'admin/incidences/addComentarioAjax';
 
-        $.post(url,{'mensagem':msg, 'visible':visible, 'ticket':ticket},function(data){
+        $.post(url,{'mensagem':msg, 'visible':visible, 'incidence':incidence},function(data){
             $('#alert-comment').html(JSON.parse(data));
         }).done(function(){
             getComentarios();
@@ -140,12 +147,12 @@
     }
 
     function getComentarios(){
-        var ticket = '<?= $ticket->id ?>';
+        var incidence = '<?= $incidence->id ?>';
         var getUrl = window.location;
         var base_url = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + '/';
-        var url = base_url + 'admin/tickets/getComentariosAjax';
+        var url = base_url + 'admin/incidences/getComentariosAjax';
 
-        $.post(url,{'ticket':ticket},function(data){
+        $.post(url,{'incidence':incidence},function(data){
             data = JSON.parse(data);
             $('.comment-panel').empty()
             data.forEach(function(row){

@@ -15,7 +15,7 @@
         <div class="app-logo">
         </div>
 
-        <?= $this->message->get(); ?>
+        <?= $this->message->get_admin(); ?>
 
         <form class="form-group" method="post">
             <div class="control">

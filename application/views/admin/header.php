@@ -16,8 +16,8 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Listar Incidências</a>
+                <li class="nav-item" <?= $active === 'listarIncidences' ? 'active' : '' ?>>
+                    <a class="nav-link" href="<?= base_url('admin/incidences/listar') ?>">Listar Incidências</a>
                 </li>
                 <li class="nav-item" <?= $active === 'listarTickets' ? 'active' : '' ?>>
                     <a class="nav-link" href="<?= base_url('admin/tickets/listar') ?>">Listar Tickets</a>
