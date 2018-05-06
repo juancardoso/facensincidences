@@ -27,7 +27,7 @@
                 <input id="password" name="password" onFocus='addPassword()' onBlur='removePassword()' placeholder="Senha" type="password"></input>
             </div>
             <div>
-                <button type="submit" class="btn btn-sm btn-success login-btn">Entrar</button>
+                <button type="submit" class="btn btn-sm btn-primary login-btn">Entrar</button>
                 <button href="#" class="btn btn-sm btn-info forgot-pass-btn">Esqueci minha senha</button>
             </div>
         </form>
