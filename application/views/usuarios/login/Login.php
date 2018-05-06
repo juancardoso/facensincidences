@@ -1,32 +1,49 @@
 <?php $this->load->view('header'); ?>
-<link href="<?= base_url('css/signin.css') ?>" rel="stylesheet">
-    <div class="container">
-        <div class="panel panel-default form-signin">
-            <div class="panel-header text-center">
-                <!-- <h3>Login</h3> -->
-            </div>
-            <?php if($errorLogin): ?>
-                <div class="alert alert-danger" role="alert">
-                    Usuario ou senha nao encontrado
-                </div>
-            <?php endif; ?>
-            <div class="panel-block">
-                <form class="form-group" method="post">
-                    <!-- <label for="inputEmail" class="sr-only">Email address or Username</label> -->
-                    <input type="text" id="inputEmail" name="login" class="form-control <?= form_error('login')? 'is-invalid' : '' ?>" placeholder="E-mail address or Username" autofocus value="<?= set_value('login') ?>">
-                    <!-- <label for="inputPassword" class="sr-only">Password</label> -->
-                    <input type="password" id="inputPassword" name="password" class="form-control mt-2 <?= form_error('password')? 'is-invalid' : '' ?>" placeholder="Password">
-                    <button class="btn btn-lg btn-success btn-block" type="submit">Sign in</button>
-                </form>
-            </div>
+<link href="<?= base_url('css/Login.css') ?>" rel="stylesheet">
+    
+<div class="Login">
+    <div class="owl">
+        <div class="hand"></div>
+        <div class="hand hand-r"></div>
+        <div class="arms">
+            <div class="arm"></div>
+            <div class="arm arm-r"></div>
         </div>
     </div>
+    <div class="form">
 
-<style>
-body { 
-  background: url(<?= base_url('images/engrenagem.svg'); ?>) no-repeat center center fixed; 
-  background-size: 1000px 1000px;   
-}
-</style>
+        <div class="app-logo">
+        </div>
+
+        <?= $this->message->get(); ?>
+
+        <form class="form-group" method="post">
+            <div class="control">
+                <label for="login" class="fa fa-envelope"></label>
+                <input id="login" name="login" placeholder="Usuário" type="text"></input>
+            </div>
+            <div class="control">
+                <label for="password" class="fa fa-asterisk"></label>
+                <input id="password" name="password" onFocus='addPassword()' onBlur='removePassword()' placeholder="Senha" type="password"></input>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-sm btn-success login-btn">Entrar</button>
+                <button href="#" class="btn btn-sm btn-info forgot-pass-btn">Esqueci minha senha</button>
+            </div>
+        </form>
+    </div>
+</div>
 
 <?php $this->load->view('footer'); ?>
+
+<script>
+
+    function addPassword(){
+        $('*').addClass('password'); 
+    }
+
+    function removePassword(){
+        $('*').removeClass('password'); 
+    }
+
+</script>

@@ -20,11 +20,11 @@ class Login extends CI_Controller {
 					redirect('usuarios/dashboard');
 				}else{
 					$data['errorLogin'] = true;
+					$this->message->add('Usuário e/ou senha inválidos!','error');
 				}
 		}else{
 			$data['errorLogin'] = false;
 		}
-
 
 		$this->load->view('usuarios/login/Login',$data);
 	}
