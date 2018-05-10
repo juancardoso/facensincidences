@@ -47,7 +47,7 @@ class ControleAcesso {
         $id = $this->CI->session->userdata('login_id');
             
         $this->CI->db->where('usu_id',$id);
-        $result = $this->CI->db->get('usarios');
+        $result = $this->CI->db->get('usuarios');
 
         if($result && $result->result_id->num_rows > 0){
             $result = $result->row();
