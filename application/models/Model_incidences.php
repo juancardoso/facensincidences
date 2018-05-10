@@ -32,8 +32,8 @@ class Model_incidences extends CI_Model {
 
     public function getAllIncidences($idIncidence = FALSE, $status = FALSE){
 
-        $this->db->select('i.*, u.usu_usuario usuario');
-        $this->db->join('userios u','usu_id = adm_id');
+        $this->db->select('i.*, u.user_usuario usuario');
+        $this->db->join('userios u','user_id = admin_id');
 
         if($idIncidence){
             $this->db->where('inc_id',$idIncidence);
@@ -48,9 +48,9 @@ class Model_incidences extends CI_Model {
     }
 
     public function getComentarios($idIncidence, $usuario = FALSE, $idComentario = FALSE){
-        $this->db->select('c.*, COALESCE(u.usu_usuario, a.adm_usuario) usuario');
-        $this->db->join('usuarios u','u.usu_id = c.icm_idusuario','LEFT');
-        $this->db->join('admin a','a.adm_id = c.icm_idadmin','LEFT');
+        $this->db->select('c.*, COALESCE(u.user_usuario, a.admin_usuario) usuario');
+        $this->db->join('usuarios u','u.user_id = c.icm_idusuario','LEFT');
+        $this->db->join('admin a','a.admin_id = c.icm_idadmin','LEFT');
 
         if($usuario)
             $this->db->where('icm_visibilidade','TODOS');
