@@ -13,8 +13,8 @@
         <a class="navbar-brand" href="#">FACENS INCIDENCES</a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <li class="nav-item <?= $active === 'dashboard' ? 'active' : '' ?>">
+                    <a class="nav-link" href="<?= base_url('admin/dashboard') ?>">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item" <?= $active === 'listarIncidences' ? 'active' : '' ?>>
                     <a class="nav-link" href="<?= base_url('admin/incidences/listar') ?>">Listar Incidências</a>
@@ -22,8 +22,8 @@
                 <li class="nav-item" <?= $active === 'listarTickets' ? 'active' : '' ?>>
                     <a class="nav-link" href="<?= base_url('admin/tickets/listar') ?>">Listar Tickets</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Listar Usuários</a>
+                <li class="nav-item" <?= $active === 'listarUsuarios' ? 'active' : '' ?>>
+                    <a class="nav-link" href="<?= base_url('admin/usuarios/listar') ?>">Listar Usuários</a>
                 </li>
             </ul>
             <div class="dropdown">
