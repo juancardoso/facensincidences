@@ -25,7 +25,7 @@ class Login extends CI_Controller {
 		}else{
 			$data['errorLogin'] = false;
 		}
-
+	
 		$this->load->view('usuarios/login/Login',$data);
 	}
 

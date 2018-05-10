@@ -28,12 +28,12 @@ class ControleAcesso {
         $hash = $this->CI->session->userdata('login_admin');
         $id = $this->CI->session->userdata('login_idAdmin');
             
-        $this->CI->db->where('adm_id',$id);
+        $this->CI->db->where('admin_id',$id);
         $result = $this->CI->db->get('admin');
+
         if($result && $result->result_id->num_rows > 0){
             $result = $result->row();
             $hashUser = base64_encode("$result->admin_id:$result->admin_user:$result->admin_password");
-            
             if($hash !== $hashUser){
                 redirect('admin/Login');
             }
@@ -46,13 +46,13 @@ class ControleAcesso {
         $hash = $this->CI->session->userdata('login_user');
         $id = $this->CI->session->userdata('login_id');
             
-        $this->CI->db->where('usu_id',$id);
+        $this->CI->db->where('user_id',$id);
         $result = $this->CI->db->get('usuarios');
-
+        
         if($result && $result->result_id->num_rows > 0){
             $result = $result->row();
             $hashUser = base64_encode("$result->user_ra:$result->user_password");
-
+            
             if($hash !== $hashUser){
                 redirect('usuarios/Login');
             }
