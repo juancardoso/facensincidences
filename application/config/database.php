@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'sql10.freemysqlhosting.net:3306',
-	'username' => 'sql10235665',
-	'password' => 'BNwrlgk5Xi',
-	'database' => 'sql10235665',
+	'hostname' => 'ns776.hostgator.com.br:3306',
+	'username' => 'lksvn159_facens',
+	'password' => 'segredo',
+	'database' => 'lksvn159_facens_incidences',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

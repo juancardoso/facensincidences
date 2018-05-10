@@ -26,8 +26,8 @@
                     </div>
 
                     <div class="form-group col-sm-6">
-                        <label for="categoria">Categoria</label>
-                        <input type="text" class="form-control" id="categoria" value="<?= $ticket->categoria ?>" readonly/>
+                        <label for="departamento">Departamento</label>
+                        <input type="text" class="form-control" id="departamento" value="<?= $ticket->departamento ?>" readonly/>
                     </div>
 
                     <div class="form-group col-sm-12">

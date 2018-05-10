@@ -14,7 +14,7 @@
                             <th>#</th>
                             <th>Titulo</th>
                             <th>Localização</th>
-                            <th>Categoria</th>
+                            <th>Departamento</th>
                             <th>Status</th>
                             <th></th>
                         </tr>
@@ -24,8 +24,8 @@
                             <tr>
                                 <td><?= $row->id ?></td>
                                 <td><?= $row->titulo ?></td>
-                                <td><?= $row->id_localizacao ?></td>
-                                <td><?= $row->id_categoria ?></td>
+                                <td><?= $row->localizacao ?></td>
+                                <td><?= $row->departamento ?></td>
                                 <td><?= $row->status ?></td>
                                 <td><a class="btn btn-sm btn-info" href="<?= base_url('admin/incidences/ver/'.$row->id) ?>">Ver</a></td>
                             </tr>

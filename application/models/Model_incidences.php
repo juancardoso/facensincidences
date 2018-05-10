@@ -17,50 +17,50 @@ class Model_incidences extends CI_Model {
         $ticket = $ticket[0];
 
         $data = [
-            'id_ticket' => $ticket->id,
-            'id_admin' => $admin,
-            'titulo' => $ticket->titulo,
-            'descricao' => $ticket->descricao,
-            'id_localizacao' => $ticket->localizacao,
-            'id_categoria' => $ticket->categoria,
+            'inc_idticket' => $ticket->id,
+            'inc_idadmin' => $admin,
+            'inc_titulo' => $ticket->titulo,
+            'inc_descricao' => $ticket->descricao,
+            'inc_idlocalizacao' => $ticket->localizacao,
+            'inc_iddepartamento' => $ticket->departamento,
         ];
 
-        $this->db->insert('incidences',$data);
+        $this->db->insert('incidencias',$data);
 
         return $this->db->insert_id();
     }
 
     public function getAllIncidences($idIncidence = FALSE, $status = FALSE){
 
-        $this->db->select('i.*, u.user_user usuario');
-        $this->db->join('user u','user_id = id_admin');
+        $this->db->select('i.*, u.usu_usuario usuario');
+        $this->db->join('userios u','usu_id = adm_id');
 
         if($idIncidence){
-            $this->db->where('id',$idIncidence);
+            $this->db->where('inc_id',$idIncidence);
         }
 
         if($status){
-            $this->db->where('status',$status);
+            $this->db->where('inc_status',$status);
         }
 
-        $result = $this->db->get('incidences i');
+        $result = $this->db->get('incidencias i');
         return ($result && $result->num_rows()) ? $result->result() : [];
     }
 
     public function getComentarios($idIncidence, $usuario = FALSE, $idComentario = FALSE){
-        $this->db->select('c.*, COALESCE(u.user_user, a.admin_user) usuario');
-        $this->db->join('user u','u.user_id = c.id_usuario','LEFT');
-        $this->db->join('admin a','a.admin_id = c.id_admin','LEFT');
+        $this->db->select('c.*, COALESCE(u.usu_usuario, a.adm_usuario) usuario');
+        $this->db->join('usuarios u','u.usu_id = c.icm_idusuario','LEFT');
+        $this->db->join('admin a','a.adm_id = c.icm_idadmin','LEFT');
 
         if($usuario)
-            $this->db->where('visibilidade','TODOS');
+            $this->db->where('icm_visibilidade','TODOS');
         
         if($idComentario)
-            $this->db->where('id',$idComentario);
+            $this->db->where('icm_id',$idComentario);
         
-        $this->db->where('id_incidence',$idIncidence);
-        $this->db->order_by('id desc');
-        $result = $this->db->get('incidences_comentarios c');
+        $this->db->where('icm_idincidence',$idIncidence);
+        $this->db->order_by('icm_id desc');
+        $result = $this->db->get('incidencias_comentarios c');
         return ($result && $result->num_rows()) ? $result->result() : [];
     }
 

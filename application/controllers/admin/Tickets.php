@@ -44,10 +44,10 @@ class Tickets extends MY_Controller {
         if(!$mensagem) { echo json_encode('<div class="alert alert-danger">Não é possivel adicionar um comentário vazio!</div>'); die; };
 
         $id = $this->tickets->addComentario([
-            'mensagem' => $mensagem,
-            'id_ticket' => $ticket,
-            'id_admin' => $user,
-            'visibilidade' => $visible
+            'tic_mensagem' => $mensagem,
+            'tic_idticket' => $ticket,
+            'tic_idadmin' => $user,
+            'tic_visibilidade' => $visible
         ]);
 
         if($id){
