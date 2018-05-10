@@ -28,7 +28,7 @@ class ControleAcesso {
         $hash = $this->CI->session->userdata('login_admin');
         $id = $this->CI->session->userdata('login_idAdmin');
             
-        $this->CI->db->where('admin_id',$id);
+        $this->CI->db->where('adm_id',$id);
         $result = $this->CI->db->get('admin');
         if($result && $result->result_id->num_rows > 0){
             $result = $result->row();
@@ -46,8 +46,8 @@ class ControleAcesso {
         $hash = $this->CI->session->userdata('login_user');
         $id = $this->CI->session->userdata('login_id');
             
-        $this->CI->db->where('user_id',$id);
-        $result = $this->CI->db->get('user');
+        $this->CI->db->where('usu_id',$id);
+        $result = $this->CI->db->get('usarios');
 
         if($result && $result->result_id->num_rows > 0){
             $result = $result->row();

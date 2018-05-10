@@ -15,7 +15,7 @@
                             <th>Usuário</th>
                             <th>Titulo</th>
                             <th>Localização</th>
-                            <th>Categoria</th>
+                            <th>Departamento</th>
                             <th>Status</th>
                             <th></th>
                         </tr>
@@ -27,7 +27,7 @@
                                 <td><?= $row->usuario ?></td>
                                 <td><?= $row->titulo ?></td>
                                 <td><?= $row->localizacao ?></td>
-                                <td><?= $row->categoria ?></td>
+                                <td><?= $row->departamento ?></td>
                                 <td><?= $row->status ?></td>
                                 <td><a class="btn btn-sm btn-info" href="<?= base_url('admin/tickets/ver/'.$row->id) ?>">Ver</a></td>
                             </tr>

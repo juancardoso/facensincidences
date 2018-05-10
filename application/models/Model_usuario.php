@@ -9,8 +9,8 @@ class Model_usuario extends CI_Model {
 
     public function admin(){
         $id = $this->session->userdata('login_idAdmin');
-        $this->db->select('admin_id id, admin_name nome, admin_user usuario, admin_email email, admin_department departamento');
-        $this->db->where('admin_id',$id);
+        $this->db->select('adm_id id, adm_nome nome, adm_usuario usuario, adm_email email, adm_departamento departamento');
+        $this->db->where('adm_id',$id);
         $result = $this->db->get('admin');
 
         return ($result && $result->num_rows()) ? $result->row() : FALSE;
@@ -18,9 +18,9 @@ class Model_usuario extends CI_Model {
 
     public function user(){
         $id = $this->session->userdata('login_id');
-        $this->db->select('user_id id, user_name nome, user_user usuario, user_email email, user_ra ra');
-        $this->db->where('user_id',$id);
-        $result = $this->db->get('user');
+        $this->db->select('usu_id id, usu_nome nome, usu_usuario usuario, usu_email email, usu_ra ra');
+        $this->db->where('usu_id',$id);
+        $result = $this->db->get('usuarios');
 
         return ($result && $result->num_rows()) ? $result->row() : FALSE;
     }

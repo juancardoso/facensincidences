@@ -13,16 +13,16 @@ class Tickets extends MY_Controller {
 	{   
 		$this->form_validation->set_rules('titulo','Titulo','trim|required');
 		$this->form_validation->set_rules('localizacao','Localização','trim|required');
-		$this->form_validation->set_rules('categoria','Categoria','trim|required');
+		$this->form_validation->set_rules('departamento','Departamento','trim|required');
 		$this->form_validation->set_rules('descricao','Descrição','trim|required');
 		if($this->form_validation->run()){
 			$data = [
-				'titulo' => $_POST['titulo'],
-				'localizacao' => $_POST['localizacao'],
-				'categoria' => $_POST['categoria'],
-				'descricao' => $_POST['descricao'],
-				'status' => 'PENDENTE',
-				'id_usuario' => $this->user->id
+				'tic_titulo' => $_POST['titulo'],
+				'tic_idlocalizacao' => $_POST['localizacao'],
+				'tic_iddepartamento' => $_POST['departamento'],
+				'tic_descricao' => $_POST['descricao'],
+				'tic_status' => 'PENDENTE',
+				'tic_idusuario' => $this->user->id
 			];
 
 			$this->db->trans_begin();
@@ -87,10 +87,10 @@ class Tickets extends MY_Controller {
         if(!$mensagem) { echo json_encode('<div class="alert alert-danger">Não é possivel adicionar um comentário vazio!</div>'); die; };
 
         $id = $this->tickets->addComentario([
-            'mensagem' => $mensagem,
-            'id_ticket' => $ticket,
-            'id_usuario' => $user,
-            'visibilidade' => 'TODOS'
+            'tcm_mensagem' => $mensagem,
+            'tcm_idticket' => $ticket,
+            'tcm_idusuario' => $user,
+            'tcm_visibilidade' => 'TODOS'
         ]);
 
         if($id){

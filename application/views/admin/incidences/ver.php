@@ -22,12 +22,12 @@
 
                     <div class="form-group col-sm-6">
                         <label for="localizacao">Localização</label>
-                        <input type="text" class="form-control" id="localizacao" value="<?= $incidence->id_localizacao ?>"  />
+                        <input type="text" class="form-control" id="localizacao" value="<?= $incidence->localizacao ?>"  />
                     </div>
 
                     <div class="form-group col-sm-6">
-                        <label for="categoria">Categoria</label>
-                        <input type="text" class="form-control" id="categoria" value="<?= $incidence->id_categoria ?>" />
+                        <label for="departamento">Departamento</label>
+                        <input type="text" class="form-control" id="departamento" value="<?= $incidence->departamento ?>" />
                     </div>
 
                     <div class="form-group col-sm-12">

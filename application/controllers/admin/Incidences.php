@@ -46,10 +46,10 @@ class Incidences extends MY_Controller {
         if(!$mensagem) { echo json_encode('<div class="alert alert-danger">Não é possivel adicionar um comentário vazio!</div>'); die; };
 
         $id = $this->incidences->addComentario([
-            'mensagem' => $mensagem,
-            'id_incidence' => $incidence,
-            'id_admin' => $user,
-            'visibilidade' => $visible
+            'icm_mensagem' => $mensagem,
+            'icm_idincidencia' => $incidence,
+            'icm_idadmin' => $user,
+            'icm_visibilidade' => $visible
         ]);
 
         if($id){

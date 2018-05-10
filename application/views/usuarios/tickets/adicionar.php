@@ -19,9 +19,9 @@
                                 echo form_dropdown('localizacao', $options, 'large','id="localizacao" class="custom-select"'); ?>
                             </div>
                             <div class="form-group">
-                                <label for="categoria">Categorias</label>
-                                <?php $options = array(""=> "Selecione","1" => "Categoria 1","2" => "Categoria 2","3" => "Categoria 3");
-                                echo form_dropdown('categoria', $options, 'large','id="categoria" class="custom-select"'); ?>
+                                <label for="departamento">Departamentos</label>
+                                <?php $options = array(""=> "Selecione","1" => "Departamento 1","2" => "Departamento 2","3" => "Departamento 3");
+                                echo form_dropdown('departamento', $options, 'large','id="departamento" class="custom-select"'); ?>
                             </div>
                             <div class="form-group">
                                 <label for="descricao">Descricao</label>
