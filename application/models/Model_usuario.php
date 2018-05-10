@@ -25,4 +25,11 @@ class Model_usuario extends CI_Model {
         return ($result && $result->num_rows()) ? $result->row() : FALSE;
     }
 
+    public function getAllUsuarios(){
+        $this->db->select('user_id, user_user, user_name, user_email, user_ra');
+        $result = $this->db->get('usuarios');
+
+        return ($result && $result->num_rows()) ? $result->result() : FALSE;
+    }
+
 }
