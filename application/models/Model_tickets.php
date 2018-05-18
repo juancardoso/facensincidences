@@ -53,7 +53,7 @@ class Model_tickets extends CI_Model {
 
     public function getComentarios($idTicket, $usuario = FALSE, $idComentario = FALSE){
         $this->db->select('tcm_id id, tcm_mensagem mensagem, tcm_data data, tcm_visibilidade visibilidade, tcm_idadmin id_admin, tcm_idusuario id_usuario');
-        $this->db->select('COALESCE(u.user_user, a.admin_usuario) usuario');
+        $this->db->select('COALESCE(u.user_user, a.admin_user) usuario');
         $this->db->join('usuarios u','u.user_id = c.tcm_idusuario','LEFT');
         $this->db->join('admin a','a.admin_id = c.tcm_idadmin','LEFT');
 
