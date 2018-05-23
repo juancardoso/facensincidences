@@ -21,8 +21,8 @@ class Model_incidences extends CI_Model {
             'inc_idadmin' => $admin,
             'inc_titulo' => $ticket->titulo,
             'inc_descricao' => $ticket->descricao,
-            'inc_idlocalizacao' => $ticket->localizacao,
-            'inc_iddepartamento' => $ticket->departamento,
+            'inc_idlocalizacao' => $ticket->id_localizacao,
+            'inc_iddepartamento' => $ticket->id_departamento,
         ];
 
         $this->db->insert('incidencias',$data);
@@ -31,9 +31,11 @@ class Model_incidences extends CI_Model {
     }
 
     public function getAllIncidences($idIncidence = FALSE, $status = FALSE){
-        $this->db->select('inc_id id, inc_titulo titulo, inc_idlocalizacao localizacao, inc_iddepartamento departamento, inc_descricao descricao, inc_status status');
+        $this->db->select('inc_id id, inc_titulo titulo, dep_nome departamento, dep_id id_departamento, loc_nome localizacao, loc_id id_localizacao, inc_descricao descricao, inc_status status');
         $this->db->select('u.admin_user usuario');
         $this->db->join('admin u','admin_id = inc_idadmin');
+        $this->db->join('localizacoes','loc_id = inc_idlocalizacao');
+        $this->db->join('departamentos','dep_id = inc_iddepartamento');
 
         if($idIncidence){
             $this->db->where('inc_id',$idIncidence);

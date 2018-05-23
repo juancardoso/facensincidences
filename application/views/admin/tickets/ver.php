@@ -54,10 +54,12 @@
 
             </div>
 
+            <?php if($ticket->status == 'PENDENTE'): ?>
             <div class="ticket-actions panel center col-sm-12">
                 <a class="btn btn-sm btn-success" href="<?= base_url('admin/tickets/aprovar/'.$ticket->id); ?>">Aprovar</a>
                 <a class="btn btn-sm btn-danger" href="#">Reprovar</a>
             </div>
+            <?php endif; ?>
 
         </div>
     </div>

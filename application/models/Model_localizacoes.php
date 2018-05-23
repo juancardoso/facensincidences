@@ -30,4 +30,13 @@ class Model_localizacoes extends CI_Model {
         $this->db->where('loc_id',$id);
         return $this->db->update('localizacoes',['loc_status' => 'EXCLUIDO']);
     }
+
+    public function getSelect(){
+        $result = $this->get();
+        $localizacoes = [];
+        foreach($result as $row){
+            $localizacoes[$row->id] = $row->nome;
+        }
+        return $localizacoes;
+    }
 }

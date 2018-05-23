@@ -30,4 +30,13 @@ class Model_departamentos extends CI_Model {
         $this->db->where('dep_id',$id);
         return $this->db->update('departamentos',['dep_status' => 'EXCLUIDO']);
     }
+
+    public function getSelect(){
+        $result = $this->get();
+        $departamentos = [];
+        foreach($result as $row){
+            $departamentos[$row->id] = $row->nome;
+        }
+        return $departamentos;
+    }
 }
