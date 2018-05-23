@@ -13,7 +13,7 @@ class Usuarios extends MY_Controller {
         $usuarios = $this->usuario->getAllUsuarios();
         $data['usuarios'] = $usuarios;
 		$data['titulo'] = 'Lista -> usuarios';
-		$data['active'] = 'listarUsuarios';
+		$data['active'] = 'usuarios';
 		$this->load->view('admin/usuarios/listar',$data);
     }
 

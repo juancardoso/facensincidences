@@ -18,7 +18,7 @@ class Incidences extends MY_Controller {
         
         $data['incidences'] = $incidences;
 		$data['titulo'] = 'Lista -> Incidences';
-		$data['active'] = 'listarIncidences';
+		$data['active'] = 'incidences';
 		$this->load->view('admin/incidences/listar',$data);
     }
 
@@ -33,7 +33,7 @@ class Incidences extends MY_Controller {
         $data['incidence'] = $incidence[0];
         $data['status'] = $status;
         $data['titulo'] = 'Incidências -> Ver';
-		$data['active'] = 'listarIncidences';
+		$data['active'] = 'incidences';
 		$this->load->view('admin/incidences/ver',$data);
     }
 

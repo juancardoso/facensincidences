@@ -16,14 +16,20 @@
                 <li class="nav-item <?= $active === 'dashboard' ? 'active' : '' ?>">
                     <a class="nav-link" href="<?= base_url('admin/dashboard') ?>">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item" <?= $active === 'listarIncidences' ? 'active' : '' ?>>
-                    <a class="nav-link" href="<?= base_url('admin/incidences/listar') ?>">Listar Incidências</a>
+                <li class="nav-item" <?= $active === 'incidences' ? 'active' : '' ?>>
+                    <a class="nav-link" href="<?= base_url('admin/incidences/listar') ?>">Incidências</a>
                 </li>
-                <li class="nav-item" <?= $active === 'listarTickets' ? 'active' : '' ?>>
-                    <a class="nav-link" href="<?= base_url('admin/tickets/listar') ?>">Listar Tickets</a>
+                <li class="nav-item" <?= $active === 'tickets' ? 'active' : '' ?>>
+                    <a class="nav-link" href="<?= base_url('admin/tickets/listar') ?>">Tickets</a>
                 </li>
-                <li class="nav-item" <?= $active === 'listarUsuarios' ? 'active' : '' ?>>
-                    <a class="nav-link" href="<?= base_url('admin/usuarios/listar') ?>">Listar Usuários</a>
+                <li class="nav-item" <?= $active === 'departamentos' ? 'active' : '' ?>>
+                    <a class="nav-link" href="<?= base_url('admin/departamentos/listar') ?>">Departamentos</a>
+                </li>
+                <li class="nav-item" <?= $active === 'localizacoes' ? 'active' : '' ?>>
+                    <a class="nav-link" href="<?= base_url('admin/localizacoes/listar') ?>">Localizações</a>
+                </li>
+                <li class="nav-item" <?= $active === 'usuarios' ? 'active' : '' ?>>
+                    <a class="nav-link" href="<?= base_url('admin/usuarios/listar') ?>">Usuários</a>
                 </li>
             </ul>
             <div class="dropdown">
@@ -43,3 +49,9 @@
             </div>
         </div>
     </nav>
+
+<script>
+
+    base_url = window.location.protocol + "//" + window.location.host + "/" + window.location.pathname.split('/')[1] + '/';
+
+</script>
