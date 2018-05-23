@@ -5,7 +5,10 @@ class Dashboard extends MY_Controller {
 
 	public function index()
 	{
-		$data['active'] = 'dashboard';        
+		$data['active'] = 'dashboard';    
+		    
 		$this->load->view('admin/dashboard',$data);
+
+		
 	}
 }
