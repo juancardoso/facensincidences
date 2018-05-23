@@ -15,13 +15,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="localizacao">Localizacao</label>
-                                <?php $options = array(""=> "Selecione","1" => "Predio A","2" => "Predio B","3" => "Predio C");
-                                echo form_dropdown('localizacao', $options, 'large','id="localizacao" class="custom-select"'); ?>
+                                <?= form_dropdown('localizacao', $localizacoes, 'large','id="localizacao" class="custom-select"'); ?>
                             </div>
                             <div class="form-group">
                                 <label for="departamento">Departamentos</label>
-                                <?php $options = array(""=> "Selecione","1" => "Departamento 1","2" => "Departamento 2","3" => "Departamento 3");
-                                echo form_dropdown('departamento', $options, 'large','id="departamento" class="custom-select"'); ?>
+                                <?= form_dropdown('departamento', $departamentos, 'large','id="departamento" class="custom-select"'); ?>
                             </div>
                             <div class="form-group">
                                 <label for="descricao">Descricao</label>

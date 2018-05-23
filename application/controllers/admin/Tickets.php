@@ -17,7 +17,7 @@ class Tickets extends MY_Controller {
         $tickets = $this->tickets->getAllTickets();
 		$data['tickets'] = $tickets;
 		$data['titulo'] = 'Lista -> Tickets';
-		$data['active'] = 'listarTicket';
+		$data['active'] = 'ticket';
 		$this->load->view('admin/tickets/listar',$data);
     }
 
@@ -31,7 +31,7 @@ class Tickets extends MY_Controller {
         
         $data['ticket'] = $ticket[0];
         $data['titulo'] = 'Tickets -> Ver';
-		$data['active'] = 'listarTicket';
+		$data['active'] = 'ticket';
 		$this->load->view('admin/tickets/ver',$data);
     }
 
