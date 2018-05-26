@@ -8,7 +8,5 @@ class Dashboard extends MY_Controller {
 		$data['active'] = 'dashboard';    
 		    
 		$this->load->view('admin/dashboard',$data);
-
-		
 	}
 }
