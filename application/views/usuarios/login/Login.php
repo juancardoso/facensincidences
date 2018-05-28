@@ -28,7 +28,7 @@
             </div>
             <div>
                 <button type="submit" class="btn btn-sm btn-primary login-btn">Entrar</button>
-                <button href="#" class="btn btn-sm btn-info forgot-pass-btn">Esqueci minha senha</button>
+                <!-- <button href="#" class="btn btn-sm btn-info forgot-pass-btn">Esqueci minha senha</button> -->
             </div>
         </form>
     </div>

@@ -21,13 +21,13 @@
                     </div>
 
                     <div class="form-group col-sm-6">
-                        <label for="localizacao">Localização</label>
-                        <input type="text" class="form-control" id="localizacao" value="<?= $incidence->localizacao ?>"  />
+                        <label for="localizacao">Localizacao</label>
+                        <?= form_dropdown('localizacao', $localizacoes, $incidence->id_localizacao,'id="localizacao" class="form-control custom-select"'); ?>
                     </div>
 
                     <div class="form-group col-sm-6">
-                        <label for="departamento">Departamento</label>
-                        <input type="text" class="form-control" id="departamento" value="<?= $incidence->departamento ?>" />
+                        <label for="departamento">Departamentos</label>
+                        <?= form_dropdown('departamento', $departamentos, $incidence->id_departamento,'id="departamento" class="form-control custom-select"'); ?>
                     </div>
 
                     <div class="form-group col-sm-12">
