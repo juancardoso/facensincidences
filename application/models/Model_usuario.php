@@ -32,4 +32,16 @@ class Model_usuario extends CI_Model {
         return ($result && $result->num_rows()) ? $result->result() : FALSE;
     }
 
+    public function getUsuarioByEmail($email){
+        $this->db->where('user_email', $email);
+        $result = $this->db->get('usuarios');
+
+        return ($result && $result->num_rows()) ? $result->row() : FALSE;
+    }
+
+    public function addUsuario($data){
+        $this->db->insert('usuarios',$data);
+        return $this->db->insert_id();
+    }
+
 }

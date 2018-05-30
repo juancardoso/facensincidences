@@ -101,9 +101,9 @@ body {
 .app-logo {
   margin: auto;
   width: 150px;
-  height: 150px;
+  height: 100px;
   position: relative;
   background-size: 150px;
   background-repeat: no-repeat;
-  background-image: url('../images/incidences.png');
+  background-image: url('../images/incidences2.png');
 }
