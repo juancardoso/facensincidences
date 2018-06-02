@@ -1,57 +1,90 @@
 <html lang="pt">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="<?= base_url('css/bootstrap.min.css') ?>"/>
-        <link rel="stylesheet" href="<?php echo base_url('css/dataTables.bootstrap.css');?>" type="text/css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <link href="<?= base_url('bower_components/bootstrap/dist/css/bootstrap.min.css') ?>" rel="stylesheet">
+        <link href="<?= base_url('bower_components/font-awesome/css/font-awesome.min.css') ?>" rel="stylesheet">
+        <link href="<?= base_url('bower_components/Ionicons/css/ionicons.min.css') ?>" rel="stylesheet">
+        <link href="<?= base_url('dist/css/AdminLTE.min.css') ?>" rel="stylesheet">
+        <link href="<?= base_url('dist/css/skins/_all-skins.min.css') ?>" rel="stylesheet">
+        <link href="<?= base_url('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') ?>" rel="stylesheet">
+
+        <!-- Google Font -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+        <script>
+
+          base_url = window.location.protocol + "//" + window.location.host + "/" + window.location.pathname.split('/')[1] + '/';
+
+        </script>
         <title>Facens Incidences</title>
     </head>
-    <body>
-    <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
-        <a class="navbar-brand" href="#">FACENS INCIDENCES</a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item <?= $active === 'dashboard' ? 'active' : '' ?>">
-                    <a class="nav-link" href="<?= base_url('admin/dashboard') ?>">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item" <?= $active === 'incidences' ? 'active' : '' ?>>
-                    <a class="nav-link" href="<?= base_url('admin/incidences/listar') ?>">Incidências</a>
-                </li>
-                <li class="nav-item" <?= $active === 'tickets' ? 'active' : '' ?>>
-                    <a class="nav-link" href="<?= base_url('admin/tickets/listar') ?>">Tickets</a>
-                </li>
-                <li class="nav-item" <?= $active === 'departamentos' ? 'active' : '' ?>>
-                    <a class="nav-link" href="<?= base_url('admin/departamentos/listar') ?>">Departamentos</a>
-                </li>
-                <li class="nav-item" <?= $active === 'localizacoes' ? 'active' : '' ?>>
-                    <a class="nav-link" href="<?= base_url('admin/localizacoes/listar') ?>">Localizações</a>
-                </li>
-                <li class="nav-item" <?= $active === 'usuarios' ? 'active' : '' ?>>
-                    <a class="nav-link" href="<?= base_url('admin/usuarios/listar') ?>">Usuários</a>
-                </li>
-            </ul>
-            <div class="dropdown">
-                <button class="btn btn-secondary btn-sm dropdown-toggle" style="background-color: #343a40; border-color: #343a40" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <body class="hold-transition skin-red layout-top-nav">
+    <div class="wrapper">
+    <header class="main-header">
+    <nav class="navbar navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="<?= base_url('admin/Dashboard'); ?>" class="navbar-brand">FACENS INCIDENCES</a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+            <i class="fa fa-bars"></i>
+          </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="<?= $active === 'dashboard' ? 'active' : '' ?>"><a href="<?= base_url('admin/dashboard') ?>">Home <span class="sr-only">(current)</span></a></li>
+            <li class="<?= $active === 'incidences' ? 'active' : '' ?>"><a href="<?= base_url('admin/incidences/listar') ?>">Incidências</a></li>
+            <li class="<?= $active === 'tickets' ? 'active' : '' ?>"><a href="<?= base_url('admin/tickets/listar') ?>">Tickets</a>
+            <li class="<?= $active === 'departamentos' ? 'active' : '' ?>"><a href="<?=base_url('admin/departamentos/listar') ?>">Departamentos</a>
+            <li class="<?= $active === 'localizacoes' ? 'active' : '' ?>"><a href="<?= base_url('admin/localizacoes/listar') ?>">Localizações</a>
+            <li class="<?= $active === 'usuarios' ? 'active' : '' ?>"><a href="<?= base_url('admin/usuarios/listar') ?>">Usuários</a>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav">
+            <!-- User Account Menu -->
+            <li class="dropdown user user-menu">
+              <!-- Menu Toggle Button -->
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <!-- The user image in the navbar-->
+                <img src=<?= $this->admin->img ?> class="user-image" alt="admin Image">
+                <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                <span class="hidden-xs">
                     <?php 
                         $nome = explode(' ',$this->admin->nome); 
                         echo $nome[0];
                      ?>
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Editar Perfil</a>
-                    <a class="dropdown-item" href="<?= base_url('admin/Login/sair') ?>">Sair</a>
-                </div>
-            </div>
-            <div style="margin-left: 10px">
-                <img src="http://placehold.it/40x40" width="40px" style="border-radius: 20px">
-            </div>
+                </span>
+              </a>
+              <ul class="dropdown-menu">
+                <!-- The user image in the menu -->
+                <li class="user-header">
+                  <img src=<?= $this->admin->img ?> class="img-circle" alt="admin Image">
+                  <p>
+                    <?= $this->admin->nome; ?>
+                    <small><?= $this->admin->usuario; ?></small>
+                  </p>
+                </li>
+                <!-- Menu Footer-->
+                <li class="user-footer">
+                  <div class="pull-left">
+                    <a href="<?= base_url('admin/dashboard/editarPerfil'); ?>" class="btn btn-default btn-flat">Editar Perfil</a>
+                  </div>
+                  <div class="pull-right">
+                    <a class="btn btn-default btn-flat" href="<?= base_url('admin/login/sair'); ?>">Sair</a>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
         </div>
+        <!-- /.navbar-custom-menu -->
+      </div>
+      <!-- /.container-fluid -->
     </nav>
-
-<script>
-
-    base_url = window.location.protocol + "//" + window.location.host + "/" + window.location.pathname.split('/')[1] + '/';
-
-</script>
+</header>

@@ -1,16 +1,19 @@
 <?php $this->load->view('admin/header'); ?> 
-    <div class="container">
-        <div class="card">
-            <div class="card-header text-center">
-                <h4>Departamentos</h4>
-            </div>
+<div class="content-wrapper">
+    <section class="content">
 
             <?php $this->message->get_admin(); ?>
 
             <div><button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalAdicionar">Adicionar</button></div>
 
-            <div class="panel" style="padding:20px;">
-                <table class="table" id="table">
+            <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Departamentos</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="table" class="table table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -34,11 +37,12 @@
                         <?php endforeach; ?>
                     </tdoby>
                 </table>
+            <!-- /.box-body -->
             </div>
+        <!-- /.box -->
 
-        </div>
-    </div>
-
+   </section>
+</div>
 
     <!-- Modal -->
     <div id="modalAdicionar" class="modal fade" role="dialog">

@@ -6,23 +6,23 @@
         <div class="col-md-8">
             <div class="row mt-4">
                 <div class="col-md-12">
-                <div class="box">
-                <div class="box-header">
+                <div class="box box-primary">
+                <div class="box-header with-border">
                 <h3 class="box-title">Ultimas Incidencias</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body no-padding">
                 <table class="table table-condensed">
-                    <?php for($i = 0 ; $i < 4 ; $i++): ?>
+                    <?php foreach($ultimasIncidences AS $row): ?>
                         <tr>
                             <td rowspan="2"><img src="http://placehold.it/90x90" width="90px" style="border-radius: 5px"></td>
-                            <td>Header Teste</td>
+                            <td><?= $row->titulo ?></td>
                         </tr>
                         <tr>
-                            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam molestie rhoncus ligula eget facilisis. Nulla facilisi. Ut lobortis, mi a posuere tincidunt, elit mi pulvinar felis, egestas feugiat mauris ex at mi. Quisque rhoncus auctor vehicula. Duis euismod orci at dolor vehicula, eget vulputate massa euismod. Nunc ultrices augue at tellus porttitor, a dapibus est ullamcorper. Vivamus venenatis egestas eros aliquet fringilla. In et nisl quis sem congue facilisis. Vestibulum non varius lectus, in sodales justo. Aenean interdum, erat eu vulputate dignissim, felis lectus aliquam dolor, ut aliquam lorem odio at arcu. Sed eu rutrum libero. Praesent eleifend lorem nec massa rhoncus, et accumsan elit interdum. Fusce congue, tortor nec aliquet interdum, felis dolor scelerisque neque, in condimentum lectus dui ac ligula.</td>
+                            <td><?= $row->descricao ?></td>
                         </tr>
 
-                    <?php endfor; ?>
+                    <?php endforeach; ?>
                 </table>
                 </div>
                 <!-- /.box-body -->
@@ -32,19 +32,19 @@
             </div>
             <div class="row mt-4">
                 <div class="col-md-12">
-                    <div class="box">
-                    <div class="box-header">
+                <div class="box box-primary">
+                <div class="box-header with-border">
                     <h3 class="box-title">Ultimas Incidencias Resolvidas</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body no-padding">
                     <table class="table table-condensed">
-                        <?php for($i = 0 ; $i < 4 ; $i++): ?>
+                        <?php foreach($ultimasIncidencesResolvidas AS $row): ?>
                             <tr>
                                 <td><img src="http://placehold.it/90x90" width="90px" style="border-radius: 5px"></td>
-                                <td>Titulo</td>
+                                <td><?= $row->titulo ?></td>
                             </tr>
-                        <?php endfor; ?>
+                        <?php endforeach; ?>
                     </table>
                     </div>
                     <!-- /.box-body -->
@@ -56,25 +56,31 @@
         <div class="col-md-4">
             <div class="row mt-4">
                 <div class="col-md-12">
-                <div class="box">
-                    <div class="box-header">
-                    <h3 class="box-title">Ranking de Usuarios</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body no-padding">
-                    <table class="table table-condensed">
-                        <?php for($i = 0 ; $i < 13 ; $i++): ?>
-                            <tr>
-                                <td><h6><?= $i ?></h6></td>
-                                <td><img src="http://placehold.it/90x90" width="90px" style="border-radius: 5px"></td>
-                                <td>User Name NAME NAME</td>
-                            </tr>
-                        <?php endfor; ?>
-                    </table>
-                    </div>
-                    <!-- /.box-body -->
-                    </div>
-                    <!-- /.box -->
+                    
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Ranking de Usuarios</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table class="table table-condensed">
+                    <?php $i = 0; foreach($ranking AS $row): ?>
+                        <tr>
+                            <td style="vertical-align: middle;"><span class="label label-warning"><?= $i += 1 ?></span></td>
+                            <td style="vertical-align: middle;"><img src=<?= $row->img ?> alt="usuario" width="50px" height="50px" style="border-radius: 5px"></td>
+                            <td style="vertical-align: middle;"><p class="text-primary"><b><?= $row->nome ?></b></p>
+                                <span class="text-secondary"> Quantidade de Incidencias: 
+                                <?= $row->qtde ?>
+                                    </span>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
                 </div>
             </div>
         </div>    

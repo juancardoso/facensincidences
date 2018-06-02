@@ -30,7 +30,7 @@ class Model_incidences extends CI_Model {
         return $this->db->insert_id();
     }
 
-    public function getAllIncidences($idIncidence = FALSE, $status = FALSE){
+    public function getAllIncidences($idIncidence = FALSE, $status = FALSE, $limit = FALSE){
         $this->db->select('inc_id id, inc_titulo titulo, dep_nome departamento, dep_id id_departamento, loc_nome localizacao, loc_id id_localizacao, inc_descricao descricao, inc_status status');
         $this->db->select('u.admin_user usuario');
         $this->db->join('admin u','admin_id = inc_idadmin');
@@ -45,9 +45,29 @@ class Model_incidences extends CI_Model {
             $this->db->where('inc_status',$status);
         }
 
+        if($limit){
+            $this->db->limit($limit);
+        }
+
+        $this->db->order_by('inc_id', 'DESC');
+
         $result = $this->db->get('incidencias i');
         return ($result && $result->num_rows()) ? $result->result() : [];
     }
+
+    public function getCountUserIncidences(){
+        $this->db->select('COUNT(*) AS qtde,user_name AS nome,user_img AS img');
+        $this->db->join('tickets','inc_idticket = tic_id','left');
+        $this->db->join('usuarios','tic_idusuario = user_id','left');
+
+        $this->db->group_by('user_id');
+        $this->db->order_by('COUNT(*)', 'DESC');
+        $this->db->limit(10);
+
+        $result = $this->db->get('incidencias');
+        return ($result && $result->num_rows()) ? $result->result() : [];
+    }
+
 
     public function getComentarios($idIncidence, $usuario = FALSE, $idComentario = FALSE){
         $this->db->select('icm_id id, icm_mensagem mensagem, icm_data data, icm_visibilidade visibilidade, icm_idadmin id_admin, icm_idusuario id_usuario');

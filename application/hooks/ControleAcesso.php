@@ -17,7 +17,7 @@ class ControleAcesso {
         $directory =$this->CI->router->directory;
         $method =$this->CI->router->method;
 
-        if($directory === 'usuarios/' && $class !== 'Login'){
+        if($directory === 'usuarios/' && $class !== 'Login' && $class !== 'login'){
              $this->controleUsuario(); 
         }else if($directory === 'admin/' && $class !== 'Login'){
             $this->controleAdmin();

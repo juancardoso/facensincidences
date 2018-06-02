@@ -1,14 +1,16 @@
 <?php $this->load->view('admin/header'); ?> 
-    <div class="container">
-        <div class="card">
-            <div class="card-header text-center">
-                <h4>Incidencias</h4>
-            </div>
+<div class="content-wrapper">
+    <section class="content">
 
             <?php $this->message->get_admin(); ?>
 
-            <div class="panel" style="padding:20px;">
-                <table class="table" id="table">
+            <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Incidencias</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="table" class="table table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -32,10 +34,13 @@
                         <?php endforeach; ?>
                     </tdoby>
                 </table>
-            </div>
-
+                </div>
+            <!-- /.box-body -->
         </div>
-    </div>
+        <!-- /.box -->
+    </section>
+</div>
+  <!-- /.content-wrapper -->
 <?php $this->load->view('admin/footer'); ?>
 
 <script>
@@ -52,9 +57,9 @@ $(document).ready(function () {
             "url": "//cdn.datatables.net/plug-ins/1.10.7/i18n/Portuguese-Brasil.json"
         },
         "dom": 'Bfrtip',
-        "buttons":[
-            { "extend": 'csvHtml5', "text": 'CSV' }
-        ],
+        buttons: [
+            'copyHtml5', 'excelHtml5', 'csvHtml5'
+        ]
     });
 
 });

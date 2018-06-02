@@ -1,16 +1,19 @@
 <?php $this->load->view('admin/header'); ?> 
-    <div class="container">
-        <div class="card">
-            <div class="card-header text-center">
-                <h4>Localizacoes</h4>
-            </div>
+<div class="content-wrapper">
+    <section class="content">
 
             <?php $this->message->get_admin(); ?>
 
             <div><button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalAdicionar">Adicionar</button></div>
 
-            <div class="panel" style="padding:20px;">
-                <table class="table" id="table">
+            <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Localizacoes</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="table" class="table table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -34,32 +37,32 @@
                         <?php endforeach; ?>
                     </tdoby>
                 </table>
+                </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+
+   </section>
+</div>
+
+    <div class="modal fade" id="modalAdicionar" >
+          <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Nova Localização</h4>
+                </div>
+                <div class="modal-body">
+                    <input class="form-control" type="text" id="nome" name="nome" placeholder="Digite o nome da localização." />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-success" data-dismiss="modal" onclick="adicionar()">Salvar</button>
+                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Cancelar</button>
+                </div>
             </div>
-
+          </div>
+          <!-- /.modal-dialog -->
         </div>
-    </div>
-
-
-    <!-- Modal -->
-    <div id="modalAdicionar" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-        <div class="modal-header">
-            <h4 class="modal-title">Nova Localização</h4>
-        </div>
-        <div class="modal-body">
-            <input class="form-control" type="text" id="nome" name="nome" placeholder="Digite o nome da localização." />
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-sm btn-success" data-dismiss="modal" onclick="adicionar()">Salvar</button>
-            <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Cancelar</button>
-        </div>
-        </div>
-
-    </div>
-    </div>
+        <!-- /.modal -->
 
     <div id="modalEditar" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -80,7 +83,6 @@
 
     </div>
     </div>
-
 
 <?php $this->load->view('admin/footer'); ?>
 

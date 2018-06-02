@@ -1,9 +1,5 @@
 <?php $this->load->view('header'); ?>
 <link href="<?= base_url('css/login-user.css') ?>" rel="stylesheet">
-<link href="<?= base_url('bower_components/bootstrap/dist/css/bootstrap.min.css') ?>" rel="stylesheet">
-<link href="<?= base_url('bower_components/font-awesome/css/font-awesome.min.css') ?>" rel="stylesheet">
-<link href="<?= base_url('bower_components/Ionicons/css/ionicons.min.css') ?>" rel="stylesheet">
-<link href="<?= base_url('dist/css/AdminLTE.min.css') ?>" rel="stylesheet">
 <!-- <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id" content="62480693910-2b8b8hf1q0ngev212gq74vb1etu9glgj.apps.googleusercontent.com"> -->
 <script src="https://apis.google.com/js/api:client.js"></script>
@@ -39,9 +35,13 @@
 
             <div class="social-auth-links text-center">
             <p>- OU -</p>
-            <a href="#" id="customBtn" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Entre usando o
-        Google+</a>
+            <a href="#" id="customBtn" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google"></i> Entre usando o Google</a>
             </div>
+            <div class="text-center">
+                </br>
+                <a href=<?= base_url("usuarios/login/Registrar") ?> class="text-center">Registrar</a>
+            </div>
+
     </div>
 </div>
 
@@ -73,11 +73,10 @@
   };
 
   function attachSignin(element) {
-    console.log(element.id);
     auth2.attachClickHandler(element, {},
         function(googleUser) {
             var profile = googleUser.getBasicProfile();
-            var url = "<?= base_url("/usuarios/login") ?>" ;
+            var url = "<?= base_url("/usuarios/login/loginSocial") ?>" ;
             $.post(url, {
                 id: profile.getId(),
                 name: profile.getName(), 
@@ -88,11 +87,11 @@
                     auth2.signOut().then(function () {
                     console.log('User signed out.');
                     });
-                    window.location = "<?= base_url("/usuarios/dashboard") ?>";
+                    window.location = base_url + "/usuarios/dashboard";
             });
           
         }, function(error) {
-          alert(JSON.stringify(error, undefined, 2));
+            
         });
   }
 

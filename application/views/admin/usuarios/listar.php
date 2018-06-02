@@ -1,14 +1,15 @@
 <?php $this->load->view('admin/header'); ?> 
-    <div class="container">
-        <div class="card">
-            <div class="card-header text-center">
-                <h4>Tickets</h4>
-            </div>
+<div class="content-wrapper">
+    <section class="content">
 
             <?php $this->message->get_admin(); ?>
-
-            <div class="panel" style="padding:20px;">
-                <table class="table" id="table">
+            <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Usuários</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="table" class="table table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -33,9 +34,11 @@
                     </tdoby>
                 </table>
             </div>
-
+            <!-- /.box-body -->
         </div>
-    </div>
+        <!-- /.box -->
+    </section>
+</div>
 <?php $this->load->view('admin/footer'); ?>
 
 <script>

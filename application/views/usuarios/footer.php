@@ -7,13 +7,13 @@
   </footer>
 </div>
 <!-- ./wrapper -->
-        <script src="<?= base_url('js/popper.js') ?>"></script>
-        <script src="<?php echo base_url('js/jquery.dataTables.js');?>"></script>
-        <script src="<?php echo base_url('js/dataTables.bootstrap.js');?>"></script>
         <!-- jQuery 3 -->
         <script src="<?= base_url("bower_components/jquery/dist/jquery.min.js") ?>"></script>
         <!-- Bootstrap 3.3.7 -->
         <script src="<?= base_url("bower_components/bootstrap/dist/js/bootstrap.min.js") ?>"></script>
+        <!-- DataTables -->
+        <script src="<?= base_url("bower_components/datatables.net/js/jquery.dataTables.min.js") ?>"></script>
+        <script src="<?= base_url("bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js") ?>"></script>
         <!-- SlimScroll -->
         <script src="<?= base_url("bower_components/jquery-slimscroll/jquery.slimscroll.min.js") ?>"></script>
         <!-- FastClick -->

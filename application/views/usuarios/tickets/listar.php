@@ -1,14 +1,16 @@
 <?php $this->load->view('usuarios/header'); ?> 
-    <div class="container">
-        <div class="card">
-            <div class="card-header text-center">
-                <h4>Meus Ticket</h4>
+<div class="content-wrapper">
+    <section class="content">
+
+        <?php $this->message->get_user(); ?>
+
+        <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Meus Tickets</h3>
             </div>
-
-            <?php $this->message->get_user(); ?>
-
-            <div class="panel" style="padding:20px;">
-                <table class="table" id="table">
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="table" class="table table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -35,9 +37,12 @@
                     </tdoby>
                 </table>
             </div>
-
+            <!-- /.box-body -->
         </div>
-    </div>
+        <!-- /.box -->
+    </section>
+</div>
+  <!-- /.content-wrapper -->
 <?php $this->load->view('usuarios/footer'); ?>
 
 <script>

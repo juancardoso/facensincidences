@@ -1,12 +1,12 @@
 <?php $this->load->view('usuarios/header'); ?> 
-
-    <div class="container">
-        <div class="card">
-            <div class="card-header text-center">
-                <h4>Ticket #<?= $ticket->id ?></h4>
+<div class="content-wrapper">
+    <section class="content">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Ticket #<?= $ticket->id ?></h3>
             </div>
 
-            <div class="panel">
+            <div class="box-body">
                 <?php $this->message->get_user(); ?>
                 <div class="info-ticket panel-side panel col-sm-6">
 
@@ -53,12 +53,14 @@
 
             </div>
 
-            <div class="ticket-actions panel center col-sm-12">
-                <a class="btn btn-sm btn-danger" href="<?= base_url("usuarios/tickets/excluir/{$ticket->id}/1") ?>">Cancelar</a>
+            <div class="box-footer center col-sm-12">
+                <a class="btn btn-sm btn-danger" href="<?= base_url("usuarios/tickets/excluir/{$ticket->id}/1") ?>">Excluir Ticket</a>
             </div>
 
         </div>
-    </div>
+    <!-- /.box -->
+    </section>
+</div>
 
 <?php $this->load->view('usuarios/footer'); ?>
 
