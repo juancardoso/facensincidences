@@ -9,7 +9,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form">
+            <form method="post">
                 <div class="box-body">
                     <div class="form-group">
                         <label for="titulo">Titulo</label>

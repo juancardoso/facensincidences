@@ -8,20 +8,17 @@
                     <div class="col-md-12">
                         <div class="box box-danger">
                             <div class="box-header with-border">
-                                <h3 class="box-title">Tickets Mais Antigos (Status: Aberto)</h3>
+                                <h3 class="box-title">Tickets Mais Antigos (Status: Pendente)</h3>
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body no-padding">
                                 <table class="table table-condensed">
-                                    <?php foreach($arr AS $row): ?>
+                                    <?php foreach($arrTickets AS $row): ?>
                                         <tr>
-                                            <td rowspan="2"><img src="http://placehold.it/90x90" width="90px" style="border-radius: 5px"></td>
+                                            <td style="width: 110px"><img src="http://placehold.it/90x90" width="90px" style="border-radius: 5px"></td>
                                             <td><?= $row->titulo ?></td>
-                                        </tr>
-                                        <tr>
                                             <td><?= $row->descricao ?></td>
                                         </tr>
-
                                     <?php endforeach; ?>
                                 </table>
                             </div>
@@ -34,17 +31,18 @@
                     <div class="col-md-12">
                         <div class="box box-danger">
                             <div class="box-header with-border">
-                                <h3 class="box-title">Incidencias com Maior Prioridade</h3>
+                                <h3 class="box-title">Incidencias</h3>
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body no-padding">
                                 <table class="table table-condensed">
-                                    <?php foreach($arr AS $row): ?>
+                                    <?php foreach($arrIncidences AS $row): ?>
                                         <tr>
-                                            <td><img src="http://placehold.it/90x90" width="90px" style="border-radius: 5px"></td>
-                                        </tr>
-                                        <tr>
-                                            <td><?= $row->titulo ?></td>
+                                            <td style="width: 110px"><img src="http://placehold.it/90x90" width="90px" style="border-radius: 5px"></td>
+                                            <td><?= $row->departamento ?></td>
+                                            <td><?= $row->localizacao ?></td>
+                                            <td><?= $row->departamento ?></td>
+                                            <td><?= $row->descricao ?></td>
                                         </tr>
 
                                     <?php endforeach; ?>
@@ -71,11 +69,8 @@
                                             <?php foreach($arr AS $row): ?>
                                                 <tr>
                                                     <td><img src="http://placehold.it/90x90" width="90px" style="border-radius: 5px"></td>
-                                                </tr>
-                                                <tr>
                                                     <td><?= $row->titulo ?></td>
                                                 </tr>
-
                                             <?php endforeach; ?>
                                         </table>
                                     </div>
@@ -98,11 +93,8 @@
                                             <?php foreach($arr AS $row): ?>
                                                 <tr>
                                                     <td><img src="http://placehold.it/90x90" width="90px" style="border-radius: 5px"></td>
-                                                </tr>
-                                                <tr>
                                                     <td><?= $row->titulo ?></td>
                                                 </tr>
-
                                             <?php endforeach; ?>
                                         </table>
                                     </div>

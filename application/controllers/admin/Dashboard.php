@@ -5,7 +5,12 @@ class Dashboard extends MY_Controller {
 
 	public function index()
 	{
-		$data['active'] = 'dashboard';    
+		$this->load->model('model_tickets','tickets');
+		$this->load->model('model_incidences','incidencias');
+
+		$data['active'] = 'dashboard';
+		$data['arrIncidences'] = $this->incidencias->getAllIncidences(FALSE,"PENDENTE","inc_data DESC");
+		$data['arrTickets'] = $this->tickets->getAllTickets(FALSE,"PENDENTE","tic_data DESC");    
 		$data['arr'] = array();
 		$this->load->view('admin/dashboard',$data);
 	}
@@ -24,6 +29,7 @@ class Dashboard extends MY_Controller {
 			$this->message->add_admin('Editado com sucesso!','sucess');
 			$admin =  $this->usuario->admin();
 		}
+
 		$data['admin'] = $admin; 
 		$data['active'] = 'editar';
 		$this->load->view('admin/editar',$data);

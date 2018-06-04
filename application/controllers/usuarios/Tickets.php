@@ -17,6 +17,7 @@ class Tickets extends MY_Controller {
 		$this->form_validation->set_rules('localizacao','Localização','trim|required');
 		$this->form_validation->set_rules('departamento','Departamento','trim|required');
 		$this->form_validation->set_rules('descricao','Descrição','trim|required');
+
 		if($this->form_validation->run()){
 			$data = [
 				'tic_titulo' => $_POST['titulo'],

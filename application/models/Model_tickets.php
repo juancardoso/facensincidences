@@ -30,7 +30,7 @@ class Model_tickets extends CI_Model {
         return ($result && $result->num_rows()) ? $result->result() : [];
     }
 
-    public function getAllTickets($idTicket = FALSE, $status = FALSE){
+    public function getAllTickets($idTicket = FALSE, $status = FALSE,$orderby = FALSE){
 
         $this->db->select('tic_id id, tic_titulo titulo, tic_descricao descricao, dep_nome departamento, dep_id id_departamento, loc_nome localizacao, loc_id id_localizacao, tic_data data, tic_status status');
         $this->db->select('u.user_user usuario');
@@ -44,6 +44,10 @@ class Model_tickets extends CI_Model {
 
         if($status){
             $this->db->where('tic_status',$status);
+        }
+
+        if($orderby){
+            $this->db->order_by($orderby);
         }
 
         $result = $this->db->get('tickets t');

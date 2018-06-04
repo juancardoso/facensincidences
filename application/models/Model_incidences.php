@@ -30,7 +30,7 @@ class Model_incidences extends CI_Model {
         return $this->db->insert_id();
     }
 
-    public function getAllIncidences($idIncidence = FALSE, $status = FALSE, $limit = FALSE){
+    public function getAllIncidences($idIncidence = FALSE, $status = FALSE, $orderby = FALSE, $limit = FALSE){
         $this->db->select('inc_id id, inc_titulo titulo, dep_nome departamento, dep_id id_departamento, loc_nome localizacao, loc_id id_localizacao, inc_descricao descricao, inc_status status');
         $this->db->select('u.admin_user usuario');
         $this->db->join('admin u','admin_id = inc_idadmin');
@@ -49,6 +49,10 @@ class Model_incidences extends CI_Model {
             $this->db->limit($limit);
         }
 
+        if($orderby){
+            $this->db->order_by($orderby);
+        }
+        
         $this->db->order_by('inc_id', 'DESC');
 
         $result = $this->db->get('incidencias i');

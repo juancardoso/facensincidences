@@ -6,8 +6,8 @@ class Dashboard extends MY_Controller {
 	public function index()
 	{   
 		$this->load->model('Model_incidences','incidences');
-		$data['ultimasIncidences'] = $this->incidences->getAllIncidences(FALSE,FALSE,5);
-		$data['ultimasIncidencesResolvidas'] = $this->incidences->getAllIncidences(FALSE,'CONCLUÍDO',5);
+		$data['ultimasIncidences'] = $this->incidences->getAllIncidences(FALSE,FALSE,FALSE,5);
+		$data['ultimasIncidencesResolvidas'] = $this->incidences->getAllIncidences(FALSE,'CONCLUÍDO',FALSE,5);
 		$data['ranking'] = $this->incidences->getCountUserIncidences();
 		$data['active'] = 'dashboard';    
 		$this->load->view('usuarios/dashboard',$data);
