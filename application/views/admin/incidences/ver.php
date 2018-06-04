@@ -1,65 +1,64 @@
 <?php $this->load->view('admin/header'); ?> 
-
-    <div class="container">
-        <div class="card">
-            <div class="card-header text-center">
-                <h4>Incidência #<?= $incidence->id ?></h4>
+<div class="content-wrapper">
+    <section class="content">
+        <div class="box box-danger">
+            <div class="box-header with-border">
+              <h3 class="box-title">Incidência #<?= $incidence->id ?></h3>
             </div>
 
-            <div class="panel">
+            <div class="box-body">
                 <?php $this->message->get_admin(); ?>
                 <div class="info-incidence panel-side panel col-sm-6">
-                <form class="form-group" method="post" href="#">
-                    <div class="form-group col-sm-6">
-                        <label for="usuario">Usuário</label>
-                        <input type="text" class="form-control" id="usuario" value="<?= $incidence->usuario ?>" />
-                    </div>
+                    <form class="form-group" method="post" href="#">
+                        <div class="form-group col-sm-6">
+                            <label for="usuario">Usuário</label>
+                            <input type="text" class="form-control" id="usuario" value="<?= $incidence->usuario ?>" />
+                        </div>
 
-                    <div class="form-group col-sm-6">
-                        <label for="titulo">Título</label>
-                        <input type="text" class="form-control" id="titulo" value="<?= $incidence->titulo ?>" />
-                    </div>
+                        <div class="form-group col-sm-6">
+                            <label for="titulo">Título</label>
+                            <input type="text" class="form-control" id="titulo" value="<?= $incidence->titulo ?>" />
+                        </div>
 
-                    <div class="form-group col-sm-6">
-                        <label for="localizacao">Localização</label>
-                        <input type="text" class="form-control" id="localizacao" value="<?= $incidence->localizacao ?>"  />
-                    </div>
+                        <div class="form-group col-sm-6">
+                            <label for="localizacao">Localizacao</label>
+                            <?= form_dropdown('localizacao', $localizacoes, $incidence->id_localizacao,'id="localizacao" class="form-control custom-select"'); ?>
+                        </div>
 
-                    <div class="form-group col-sm-6">
-                        <label for="departamento">Departamento</label>
-                        <input type="text" class="form-control" id="departamento" value="<?= $incidence->departamento ?>" />
-                    </div>
+                        <div class="form-group col-sm-6">
+                            <label for="departamento">Departamentos</label>
+                            <?= form_dropdown('departamento', $departamentos, $incidence->id_departamento,'id="departamento" class="form-control custom-select"'); ?>
+                        </div>
 
-                    <div class="form-group col-sm-12">
-                        <label for="descricao">Descrição</label>
-                        <textarea rows="5" class="form-control" id="descricao" > <?= $incidence->descricao ?> </textarea>
-                    </div>
+                        <div class="form-group col-sm-12">
+                            <label for="descricao">Descrição</label>
+                            <textarea rows="5" class="form-control" id="descricao" > <?= $incidence->descricao ?> </textarea>
+                        </div>
 
-                    <div class="form-group col-sm-12">
-                        <label for="status">Status</label>
-                        <?= form_dropdown('status',$status,$incidence->status,'class="form-control"') ?>
-                    </div>
+                        <div class="form-group col-sm-12">
+                            <label for="status">Status</label>
+                            <?= form_dropdown('status',$status,$incidence->status,'class="form-control"') ?>
+                        </div>
 
-                
-                    <div class="incidence-actions panel center col-sm-12">
-                        <a class="btn btn-sm btn-success" href="#">Salvar</a>
-                    </div>
                     
-                </form>
+                        <div class="incidence-actions panel center col-sm-12">
+                            <a class="btn btn-sm btn-success" href="#">Salvar</a>
+                        </div>
+                        
+                    </form>
                 </div>
                 
-
                 <div class="comment-incidence panel-side panel col-sm-6">
                     <h4 class="center">Comentários</h4>
                     <div id="alert-comment"></div>
-                    <div>
-                        <textarea class="form-control" name="mensagem" id="mensagem" rows="2"></textarea>
-                        <input id="visible" type="checkbox" value="0" hidden>
-                        <a class="btn btn-sm btn-primary" href="#" onclick="adicionarComentario()" style="margin:5px;">Adicionar Comentário</a>
-                        <a class="btn btn-sm btn-secondary" href="#" onclick="toggleVisibility()" style="margin:5px;" id="btn-visible" title="Visibilidade"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                    </div>
+                        <div>
+                            <textarea class="form-control" name="mensagem" id="mensagem" rows="2"></textarea>
+                            <input id="visible" type="checkbox" value="0" hidden>
+                            <a class="btn btn-sm btn-primary" href="#" onclick="adicionarComentario()" style="margin:5px;">Adicionar Comentário</a>
+                            <a class="btn btn-sm btn-secondary" href="#" onclick="toggleVisibility()" style="margin:5px;" id="btn-visible" title="Visibilidade"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                        </div>
 
-                    <div class="panel-body comment-panel">
+                        <div class="panel-body comment-panel">
                         
                     </div>
                 </div>
@@ -67,7 +66,9 @@
             </div>
 
         </div>
-    </div>
+    <!-- /.box -->
+    </section>
+</div>
 
 <?php $this->load->view('admin/footer'); ?>
 

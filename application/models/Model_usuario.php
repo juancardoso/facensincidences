@@ -9,7 +9,7 @@ class Model_usuario extends CI_Model {
 
     public function admin(){
         $id = $this->session->userdata('login_idAdmin');
-        $this->db->select('admin_id id, admin_name nome, admin_user usuario, admin_email email');
+        $this->db->select('admin_id id, admin_name nome, admin_user usuario, admin_email email, admin_img img');
         $this->db->where('admin_id',$id);
         $result = $this->db->get('admin');
 
@@ -18,7 +18,7 @@ class Model_usuario extends CI_Model {
 
     public function user(){
         $id = $this->session->userdata('login_id');
-        $this->db->select('user_id id, user_name nome, user_user usuario, user_email email, user_ra ra');
+        $this->db->select('user_id id, user_name nome, user_user usuario, user_email email, user_ra ra, user_img img');
         $this->db->where('user_id',$id);
         $result = $this->db->get('usuarios');
 
@@ -30,6 +30,28 @@ class Model_usuario extends CI_Model {
         $result = $this->db->get('usuarios');
 
         return ($result && $result->num_rows()) ? $result->result() : FALSE;
+    }
+
+    public function getUsuarioByEmail($email){
+        $this->db->where('user_email', $email);
+        $result = $this->db->get('usuarios');
+
+        return ($result && $result->num_rows()) ? $result->row() : FALSE;
+    }
+
+    public function addUsuario($data){
+        $this->db->insert('usuarios',$data);
+        return $this->db->insert_id();
+    }
+
+    public function updateUsuario($id,$data){
+        $this->db->where('user_id', $id);
+        $this->db->update('usuarios', $data);
+    }
+
+    public function updateAdmin($id,$data){
+        $this->db->where('admin_id', $id);
+        $this->db->update('admin', $data);
     }
 
 }

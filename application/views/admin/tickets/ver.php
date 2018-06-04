@@ -1,12 +1,12 @@
 <?php $this->load->view('admin/header'); ?> 
-
-    <div class="container">
-        <div class="card">
-            <div class="card-header text-center">
-                <h4>Ticket #<?= $ticket->id ?></h4>
+<div class="content-wrapper">
+    <section class="content">
+        <div class="box box-danger">
+            <div class="box-header with-border">
+              <h3 class="box-title">Ticket #<?= $ticket->id ?></h3>
             </div>
 
-            <div class="panel">
+            <div class="box-body">
                 <?php $this->message->get_admin(); ?>
                 <div class="info-ticket panel-side panel col-sm-6">
 
@@ -54,13 +54,17 @@
 
             </div>
 
+            <?php if($ticket->status == 'PENDENTE'): ?>
             <div class="ticket-actions panel center col-sm-12">
                 <a class="btn btn-sm btn-success" href="<?= base_url('admin/tickets/aprovar/'.$ticket->id); ?>">Aprovar</a>
                 <a class="btn btn-sm btn-danger" href="#">Reprovar</a>
             </div>
+            <?php endif; ?>
 
         </div>
-    </div>
+    <!-- /.box -->
+    </section>
+</div>
 
 <?php $this->load->view('admin/footer'); ?>
 

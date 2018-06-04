@@ -1,7 +1,26 @@
-        <script src="<?= base_url('js/jquery-3.3.1.min.js') ?>"></script>
-        <script src="<?= base_url('js/popper.js') ?>"></script>
-        <script src="<?= base_url('js/bootstrap.min.js') ?>"></script>
-        <script src="<?php echo base_url('js/jquery.dataTables.js');?>"></script>
-        <script src="<?php echo base_url('js/dataTables.bootstrap.js');?>"></script>
+<footer class="main-footer">
+    <div class="container">
+      <strong>Copyright &copy; 2018 <a href="">Manda Nuggets</a>.</strong> All rights
+      reserved.
+    </div>
+    <!-- /.container -->
+  </footer>
+</div>
+<!-- ./wrapper -->
+        <!-- jQuery 3 -->
+        <script src="<?= base_url("bower_components/jquery/dist/jquery.min.js") ?>"></script>
+        <!-- Bootstrap 3.3.7 -->
+        <script src="<?= base_url("bower_components/bootstrap/dist/js/bootstrap.min.js") ?>"></script>
+        <!-- DataTables -->
+        <script src="<?= base_url("bower_components/datatables.net/js/jquery.dataTables.min.js") ?>"></script>
+        <script src="<?= base_url("bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js") ?>"></script>
+        <!-- SlimScroll -->
+        <script src="<?= base_url("bower_components/jquery-slimscroll/jquery.slimscroll.min.js") ?>"></script>
+        <!-- FastClick -->
+        <script src="<?= base_url("bower_components/fastclick/lib/fastclick.js") ?>"></script>
+        <!-- AdminLTE App -->
+        <script src="<?= base_url("dist/js/adminlte.min.js") ?>"></script>
+        <!-- AdminLTE for demo purposes -->
+        <script src="<?= base_url("dist/js/demo.js") ?>"></script>
     </body>
 </html>

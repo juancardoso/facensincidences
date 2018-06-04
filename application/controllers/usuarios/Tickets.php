@@ -7,6 +7,8 @@ class Tickets extends MY_Controller {
     {
 		parent::__construct();
 		$this->load->model('Model_tickets','tickets');
+		$this->load->model('Model_departamentos','departamentos');
+		$this->load->model('Model_localizacoes','localizacoes');
     }
 
 	public function adicionar()
@@ -15,6 +17,7 @@ class Tickets extends MY_Controller {
 		$this->form_validation->set_rules('localizacao','Localização','trim|required');
 		$this->form_validation->set_rules('departamento','Departamento','trim|required');
 		$this->form_validation->set_rules('descricao','Descrição','trim|required');
+
 		if($this->form_validation->run()){
 			$data = [
 				'tic_titulo' => $_POST['titulo'],
@@ -38,6 +41,8 @@ class Tickets extends MY_Controller {
 
 			redirect('usuarios/tickets/listar');
 		}else{
+			$data['localizacoes'] = $this->localizacoes->getSelect();
+			$data['departamentos'] = $this->departamentos->getSelect();
 			$data['active'] = 'criarTicket';
 			$this->load->view('usuarios/tickets/adicionar',$data);
 		}

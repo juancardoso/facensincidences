@@ -6,7 +6,9 @@ class Incidences extends MY_Controller {
 	public function __construct()
     {
 		parent::__construct();
-		$this->load->model('Model_incidences','incidences');
+        $this->load->model('Model_incidences','incidences');
+        $this->load->model('Model_departamentos','departamentos');
+		$this->load->model('Model_localizacoes','localizacoes');
     }
 
     public function index(){
@@ -18,7 +20,7 @@ class Incidences extends MY_Controller {
         
         $data['incidences'] = $incidences;
 		$data['titulo'] = 'Lista -> Incidences';
-		$data['active'] = 'listarIncidences';
+		$data['active'] = 'incidences';
 		$this->load->view('admin/incidences/listar',$data);
     }
 
@@ -32,8 +34,10 @@ class Incidences extends MY_Controller {
         $status = $this->incidences->getStatus();
         $data['incidence'] = $incidence[0];
         $data['status'] = $status;
+        $data['localizacoes'] = $this->localizacoes->getSelect();
+			$data['departamentos'] = $this->departamentos->getSelect();
         $data['titulo'] = 'Incidências -> Ver';
-		$data['active'] = 'listarIncidences';
+		$data['active'] = 'incidences';
 		$this->load->view('admin/incidences/ver',$data);
     }
 

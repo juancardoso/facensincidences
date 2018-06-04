@@ -14,9 +14,11 @@ class Model_tickets extends CI_Model {
 
     public function getTickets($idUser, $idTicket = FALSE){
         
-        $this->db->select('tic_id id, tic_titulo titulo, tic_descricao descricao, tic_iddepartamento departamento, tic_idlocalizacao localizacao, tic_data data, tic_status status');
+        $this->db->select('tic_id id, tic_titulo titulo, tic_descricao descricao, dep_nome departamento, dep_id id_departamento, loc_nome localizacao, loc_id id_localizacao, tic_data data, tic_status status');
         $this->db->select('u.user_user usuario');
         $this->db->join('usuarios u','user_id = tic_idusuario');
+        $this->db->join('localizacoes','loc_id = tic_idlocalizacao');
+        $this->db->join('departamentos','dep_id = tic_iddepartamento');
         
         if($idTicket){
             $this->db->where('tic_id',$idTicket);
@@ -28,11 +30,13 @@ class Model_tickets extends CI_Model {
         return ($result && $result->num_rows()) ? $result->result() : [];
     }
 
-    public function getAllTickets($idTicket = FALSE, $status = FALSE){
+    public function getAllTickets($idTicket = FALSE, $status = FALSE,$orderby = FALSE){
 
-        $this->db->select('tic_id id, tic_titulo titulo, tic_descricao descricao, tic_iddepartamento departamento, tic_idlocalizacao localizacao, tic_data data, tic_status status');
+        $this->db->select('tic_id id, tic_titulo titulo, tic_descricao descricao, dep_nome departamento, dep_id id_departamento, loc_nome localizacao, loc_id id_localizacao, tic_data data, tic_status status');
         $this->db->select('u.user_user usuario');
         $this->db->join('usuarios u','user_id = tic_idusuario');
+        $this->db->join('localizacoes','loc_id = tic_idlocalizacao');
+        $this->db->join('departamentos','dep_id = tic_iddepartamento');
 
         if($idTicket){
             $this->db->where('tic_id',$idTicket);
@@ -40,6 +44,10 @@ class Model_tickets extends CI_Model {
 
         if($status){
             $this->db->where('tic_status',$status);
+        }
+
+        if($orderby){
+            $this->db->order_by($orderby);
         }
 
         $result = $this->db->get('tickets t');
@@ -53,7 +61,7 @@ class Model_tickets extends CI_Model {
 
     public function getComentarios($idTicket, $usuario = FALSE, $idComentario = FALSE){
         $this->db->select('tcm_id id, tcm_mensagem mensagem, tcm_data data, tcm_visibilidade visibilidade, tcm_idadmin id_admin, tcm_idusuario id_usuario');
-        $this->db->select('COALESCE(u.user_user, a.admin_usuario) usuario');
+        $this->db->select('COALESCE(u.user_user, a.admin_user) usuario');
         $this->db->join('usuarios u','u.user_id = c.tcm_idusuario','LEFT');
         $this->db->join('admin a','a.admin_id = c.tcm_idadmin','LEFT');
 
