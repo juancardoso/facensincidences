@@ -87,7 +87,7 @@
                     auth2.signOut().then(function () {
                     console.log('User signed out.');
                     });
-                    window.location = base_url + "/usuarios/dashboard";
+                    window.location = base_url + "dashboard";
             });
           
         }, function(error) {
