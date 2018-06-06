@@ -123,6 +123,7 @@
         $.post(url,{'mensagem':msg, 'ticket':ticket},function(data){
             $('#alert-comment').html(JSON.parse(data));
         }).done(function(){
+            $('#mensagem').val('');
             getComentarios();
         });
     }
@@ -139,7 +140,7 @@
             data.forEach(function(row){
                 var user = (row.id_usuario == '<?= json_decode($this->user->id) ?>') ? 'comment-user' : '';
                 $('.comment-panel').append('<div class="comment col-sm-12 '+user+'" id="comment-'+row.id+'">');
-                $('#comment-'+row.id).append('<div class="row comment-header "><small><b>'+row.usuario+'</b> '+row.data+'</small></div>');
+                $('#comment-'+row.id).append('<div class="row comment-header "><small><b>'+row.nome+'</b> '+row.data+'</small></div>');
                 $('#comment-'+row.id).append('<div class="comment-msg badge badge-info">' + row.mensagem + '</div>');
                 $('.comment-panel').append('</div>');
             });

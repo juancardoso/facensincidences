@@ -32,7 +32,7 @@ class Model_incidences extends CI_Model {
 
     public function getAllIncidences($idIncidence = FALSE, $status = FALSE, $orderby = FALSE, $limit = FALSE){
         $this->db->select('inc_id id, inc_titulo titulo, dep_nome departamento, dep_id id_departamento, loc_nome localizacao, loc_id id_localizacao, inc_descricao descricao, inc_status status');
-        $this->db->select('u.admin_user usuario');
+        $this->db->select('u.admin_user usuario, u.admin_name nome');
         $this->db->join('admin u','admin_id = inc_idadmin');
         $this->db->join('localizacoes','loc_id = inc_idlocalizacao');
         $this->db->join('departamentos','dep_id = inc_iddepartamento');
@@ -75,7 +75,7 @@ class Model_incidences extends CI_Model {
 
     public function getComentarios($idIncidence, $usuario = FALSE, $idComentario = FALSE){
         $this->db->select('icm_id id, icm_mensagem mensagem, icm_data data, icm_visibilidade visibilidade, icm_idadmin id_admin, icm_idusuario id_usuario');
-        $this->db->select('COALESCE(u.user_user, a.admin_usuario) usuario');
+        $this->db->select('COALESCE(u.user_user, a.admin_user) usuario, COALESCE(u.user_name, a.admin_name) nome');
         $this->db->join('usuarios u','u.user_id = c.icm_idusuario','LEFT');
         $this->db->join('admin a','a.admin_id = c.icm_idadmin','LEFT');
 
@@ -85,14 +85,14 @@ class Model_incidences extends CI_Model {
         if($idComentario)
             $this->db->where('icm_id',$idComentario);
         
-        $this->db->where('icm_idincidence',$idIncidence);
+        $this->db->where('icm_idincidencia',$idIncidence);
         $this->db->order_by('icm_id desc');
         $result = $this->db->get('incidencias_comentarios c');
         return ($result && $result->num_rows()) ? $result->result() : [];
     }
 
     public function addComentario($data){
-        $this->db->insert('incidences_comentarios',$data);
+        $this->db->insert('incidencias_comentarios',$data);
         return $this->db->insert_id();
     }
 
@@ -105,5 +105,10 @@ class Model_incidences extends CI_Model {
             'CANCELADO' => 'Cancelado'
 
         ];
+    }
+
+    public function update($id, $data){
+        $this->db->where('inc_id',$id);
+        return $this->db->update('incidencias',$data);
     }
 }

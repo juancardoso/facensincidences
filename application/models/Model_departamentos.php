@@ -12,9 +12,11 @@ class Model_departamentos extends CI_Model {
         return $this->db->insert_id();
     }
 
-    public function get($id = FALSE){
+    public function get($id = FALSE, $ativos = TRUE){
         $this->db->select('dep_id id, dep_nome nome, DATE(dep_data_criacao) data, dep_status status');
-        $this->db->where('dep_status','ATIVO');
+        if($ativos){
+            $this->db->where('dep_status','ATIVO');
+        }
         if($id)
             $this->db->where('dep_id',$id);
         $result = $this->db->get('departamentos');
@@ -31,8 +33,8 @@ class Model_departamentos extends CI_Model {
         return $this->db->update('departamentos',['dep_status' => 'EXCLUIDO']);
     }
 
-    public function getSelect(){
-        $result = $this->get();
+    public function getSelect($ativos = TRUE){
+        $result = $this->get(FALSE, $ativos);
         $departamentos = [];
         foreach($result as $row){
             $departamentos[$row->id] = $row->nome;

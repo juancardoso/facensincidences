@@ -1,7 +1,7 @@
-<?php $this->load->view('admin/header'); ?> 
+<?php $this->load->view('usuarios/header'); ?> 
 <div class="content-wrapper">
     <section class="content">
-        <div class="box box-danger">
+        <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Incidência #<?= $incidence->id ?></h3>
             </div>
@@ -9,7 +9,7 @@
             <div class="box-body">
                 <?php $this->message->get_admin(); ?>
                 <div class="info-incidence panel-side panel col-sm-6">
-                    <form class="form-group" method="post" href="<?= base_url('admin/incidences/atualizar/'.$incidence->id) ?>">
+                    <form class="form-group" method="post" href="#">
                         <div class="form-group col-sm-6">
                             <label for="usuario">Usuário</label>
                             <input type="text" class="form-control" id="usuario" value="<?= $incidence->usuario ?>" readonly/>
@@ -17,32 +17,27 @@
 
                         <div class="form-group col-sm-6">
                             <label for="titulo">Título</label>
-                            <input type="text" class="form-control" id="titulo" value="<?= $incidence->titulo ?>" required/>
+                            <input type="text" class="form-control" id="titulo" value="<?= $incidence->titulo ?>" readonly/>
                         </div>
 
                         <div class="form-group col-sm-6">
                             <label for="localizacao">Localizacao</label>
-                            <?= form_dropdown('localizacao', $localizacoes, $incidence->id_localizacao,'id="localizacao" class="form-control custom-select" required'); ?>
+                            <input type="text" class="form-control" id="localizacao" value="<?= $localizacoes[$incidence->id_localizacao] ?>" readonly/>
                         </div>
 
                         <div class="form-group col-sm-6">
                             <label for="departamento">Departamentos</label>
-                            <?= form_dropdown('departamento', $departamentos, $incidence->id_departamento,'id="departamento" class="form-control custom-select" required'); ?>
+                            <input type="text" class="form-control" id="departamento" value="<?= $departamentos[$incidence->id_departamento] ?>" readonly/>
                         </div>
 
                         <div class="form-group col-sm-12">
                             <label for="descricao">Descrição</label>
-                            <textarea rows="5" class="form-control" id="descricao" required> <?= $incidence->descricao ?> </textarea>
+                            <textarea rows="5" class="form-control" id="descricao" readonly> <?= $incidence->descricao ?> </textarea>
                         </div>
 
                         <div class="form-group col-sm-12">
                             <label for="status">Status</label>
-                            <?= form_dropdown('status',$status,$incidence->status,'class="form-control" required') ?>
-                        </div>
-
-                    
-                        <div class="incidence-actions panel center col-sm-12">
-                            <button class="btn btn-sm btn-success" type="submit">Salvar</button>
+                            <input type="text" class="form-control" id="status" value="<?= $status[$incidence->status] ?>" readonly/>
                         </div>
                         
                     </form>
@@ -55,7 +50,6 @@
                             <textarea class="form-control" name="mensagem" id="mensagem" rows="2"></textarea>
                             <input id="visible" type="checkbox" value="0" hidden>
                             <a class="btn btn-sm btn-primary" href="#" onclick="adicionarComentario()" style="margin:5px;">Adicionar Comentário</a>
-                            <a class="btn btn-sm btn-secondary" href="#" onclick="toggleVisibility()" style="margin:5px;" id="btn-visible" title="Visibilidade"><i class="fa fa-eye" aria-hidden="true"></i></a>
                         </div>
 
                         <div class="panel-body comment-panel">
@@ -70,7 +64,7 @@
     </section>
 </div>
 
-<?php $this->load->view('admin/footer'); ?>
+<?php $this->load->view('usuarios/footer'); ?>
 
 <style>
     .panel-side {
@@ -121,26 +115,14 @@
         getComentarios();
     })
 
-    function toggleVisibility(){
-        var val = !$('#visible').is(':checked');
-        $('#visible').prop('checked', val);
-
-        if(val){
-            $('#btn-visible').html('<i class="fa fa-eye-slash" aria-hidden="true">');
-        }else{
-            $('#btn-visible').html('<i class="fa fa-eye" aria-hidden="true">');
-        }
-    }
-
     function adicionarComentario(){
         var msg = $('#mensagem').val();
-        var visible = $('#visible').is(':checked') ? 'ADM' : 'TODOS';
         var incidence = '<?= $incidence->id ?>';
         var getUrl = window.location;
         var base_url = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + '/';
-        var url = base_url + 'admin/incidences/addComentarioAjax';
+        var url = base_url + 'usuarios/incidences/addComentarioAjax';
 
-        $.post(url,{'mensagem':msg, 'visible':visible, 'incidence':incidence},function(data){
+        $.post(url,{'mensagem':msg, 'incidence':incidence},function(data){
             $('#alert-comment').html(JSON.parse(data));
         }).done(function(){
             $('#mensagem').val('');
@@ -152,7 +134,7 @@
         var incidence = '<?= $incidence->id ?>';
         var getUrl = window.location;
         var base_url = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + '/';
-        var url = base_url + 'admin/incidences/getComentariosAjax';
+        var url = base_url + 'usuarios/incidences/getComentariosAjax';
 
         $.post(url,{'incidence':incidence},function(data){
             data = JSON.parse(data);
