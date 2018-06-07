@@ -10,8 +10,8 @@
         <link href="<?= base_url('dist/css/AdminLTE.min.css') ?>" rel="stylesheet">
         <script>
 
-          base_url = window.location.protocol + "//" + window.location.host + "/" + window.location.pathname.split('/')[1] + '/';
-
+          //base_url = window.location.protocol + "//" + window.location.host + "/" + window.location.pathname.split('/')[1] + '/';
+          base_url = "<?= base_url() ?>";
         </script>
         <title>Facens Incidences</title>
     </head>
