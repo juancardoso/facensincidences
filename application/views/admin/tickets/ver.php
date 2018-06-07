@@ -139,6 +139,7 @@
         $.post(url,{'mensagem':msg, 'visible':visible, 'ticket':ticket},function(data){
             $('#alert-comment').html(JSON.parse(data));
         }).done(function(){
+            $('#mensagem').val('');
             getComentarios();
         });
     }

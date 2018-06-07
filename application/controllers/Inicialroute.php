@@ -5,6 +5,6 @@ class Inicialroute extends CI_Controller {
 
 	public function index()
 	{
-        	redirect('usuarios/Login');
+		redirect('usuarios/Login');
 	}
 }
