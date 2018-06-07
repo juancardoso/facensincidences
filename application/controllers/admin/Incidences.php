@@ -26,7 +26,7 @@ class Incidences extends MY_Controller {
 
     public function ver($id){
         $incidence = $this->incidences->getAllIncidences($id, FALSE);
-
+        
         if(!$incidence){
             $this->message->add_admin('Não foi possível encontrar a incidência selecionada!','error');
             redirect('admin/incidences/listar');
@@ -80,7 +80,7 @@ class Incidences extends MY_Controller {
 		$this->form_validation->set_rules('departamento','Departamento','trim|required');
         $this->form_validation->set_rules('descricao','Descrição','trim|required');
         $this->form_validation->set_rules('status','Status','trim|required');
-        var_dump($_POST);die;
+        
 		if($this->form_validation->run()){
 			$data = [
 				'inc_idlocalizacao' => $_POST['localizacao'],
@@ -90,11 +90,11 @@ class Incidences extends MY_Controller {
 			];
 
 			$this->db->trans_begin();
-			$id = $this->incidences->update($id,$data);
+			$this->incidences->update($id,$data);
 
 			if($this->db->trans_status()){
 				$this->db->trans_commit();
-				$this->message->add_admin('Preenche todos os campos para atualziar a incidência','success');
+				$this->message->add_admin('Incidência atualizada com sucesso','success');
 			}else{
 				$this->db->trans_rollback();
 				$this->message->add_admin('Preenche todos os campos para atualziar a incidência','error');

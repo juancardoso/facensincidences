@@ -25,8 +25,11 @@ class Model_usuario extends CI_Model {
         return ($result && $result->num_rows()) ? $result->row() : FALSE;
     }
 
-    public function getAllUsuarios(){
+    public function getAllUsuarios($ativos = false){
         $this->db->select('user_id, user_user, user_name, user_email, user_ra');
+        if($ativos){
+            $this->db->where('user_status',1);
+        }
         $result = $this->db->get('usuarios');
 
         return ($result && $result->num_rows()) ? $result->result() : FALSE;
@@ -52,6 +55,11 @@ class Model_usuario extends CI_Model {
     public function updateAdmin($id,$data){
         $this->db->where('admin_id', $id);
         $this->db->update('admin', $data);
+    }
+
+    public function excluirUsuario($id){
+        $this->db->where('user_id', $id);
+        $this->db->update('usuarios', array('user_status'=> 2));
     }
 
 }

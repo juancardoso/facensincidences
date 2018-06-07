@@ -28,7 +28,7 @@
                                 <td><?= $row->user_name ?></td>
                                 <td><?= $row->user_email ?></td>
                                 <td><?= $row->user_ra ?></td>
-                                <td><a class="btn btn-sm btn-info" href="#">Ver</a></td>
+                                <td><a class="btn btn-sm btn-danger" href="<?= base_url('admin/usuarios/excluirUsuario/'.$row->user_id) ?>"> Excluir</a></td>
                             </tr>
                         <?php endforeach; ?>
                     </tdoby>

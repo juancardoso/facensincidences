@@ -100,7 +100,7 @@ class Model_incidences extends CI_Model {
         return [
             'PENDENTE' => 'Pendente',
             'EM ANDAMENTO' => 'Em Andamento',
-            'CONCLUÍDO' => 'Concluída',
+            'CONCLUIDO' => 'Concluída',
             'PAUSADO' => 'Pausada',
             'CANCELADO' => 'Cancelado'
 

@@ -10,11 +10,17 @@ class Usuarios extends MY_Controller {
     }
 
     public function listar(){
-        $usuarios = $this->usuario->getAllUsuarios();
+        $usuarios = $this->usuario->getAllUsuarios(true);
         $data['usuarios'] = $usuarios;
 		$data['titulo'] = 'Lista -> usuarios';
 		$data['active'] = 'usuarios';
 		$this->load->view('admin/usuarios/listar',$data);
+    }
+
+    public function excluirUsuario($id){
+        $this->usuario->excluirUsuario($id);
+
+        redirect('admin/usuarios/listar');
     }
 
 }

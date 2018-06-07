@@ -9,7 +9,7 @@
             <div class="box-body">
                 <?php $this->message->get_admin(); ?>
                 <div class="info-incidence panel-side panel col-sm-6">
-                    <form class="form-group" method="post" href="<?= base_url('admin/incidences/atualizar/'.$incidence->id) ?>">
+                    <form class="form-group" method="post" action="<?= base_url('admin/incidences/atualizar/'.$incidence->id) ?>">
                         <div class="form-group col-sm-6">
                             <label for="usuario">Usuário</label>
                             <input type="text" class="form-control" id="usuario" value="<?= $incidence->usuario ?>" readonly/>
@@ -17,33 +17,34 @@
 
                         <div class="form-group col-sm-6">
                             <label for="titulo">Título</label>
-                            <input type="text" class="form-control" id="titulo" value="<?= $incidence->titulo ?>" required/>
+                            <input type="text" class="form-control" id="titulo" name="titulo" value="<?= $incidence->titulo ?>" required <?= $incidence->status !== "CONCLUIDO"? "":"readonly" ?> />
                         </div>
 
                         <div class="form-group col-sm-6">
                             <label for="localizacao">Localizacao</label>
-                            <?= form_dropdown('localizacao', $localizacoes, $incidence->id_localizacao,'id="localizacao" class="form-control custom-select" required'); ?>
+                            <?= form_dropdown('localizacao', $localizacoes, $incidence->id_localizacao,'id="localizacao" class="form-control custom-select" required '.($incidence->status !== "CONCLUIDO"? "":"readonly")); ?>
                         </div>
 
                         <div class="form-group col-sm-6">
                             <label for="departamento">Departamentos</label>
-                            <?= form_dropdown('departamento', $departamentos, $incidence->id_departamento,'id="departamento" class="form-control custom-select" required'); ?>
+                            <?= form_dropdown('departamento', $departamentos, $incidence->id_departamento,'id="departamento" class="form-control custom-select" required '.($incidence->status !== "CONCLUIDO"? "":"readonly")); ?>
                         </div>
 
                         <div class="form-group col-sm-12">
                             <label for="descricao">Descrição</label>
-                            <textarea rows="5" class="form-control" id="descricao" required> <?= $incidence->descricao ?> </textarea>
+                            <textarea rows="5" class="form-control" name="descricao" id="descricao" required <?= $incidence->status !== "CONCLUIDO"? "":"readonly" ?>> <?= $incidence->descricao ?> </textarea>
                         </div>
 
                         <div class="form-group col-sm-12">
                             <label for="status">Status</label>
-                            <?= form_dropdown('status',$status,$incidence->status,'class="form-control" required') ?>
+                            <?= form_dropdown('status',$status,$incidence->status,'class="form-control" required '.($incidence->status !== "CONCLUIDO"? "":"readonly")) ?>
                         </div>
 
-                    
+                        <?php if($incidence->status !== "CONCLUIDO"): ?>
                         <div class="incidence-actions panel center col-sm-12">
                             <button class="btn btn-sm btn-success" type="submit">Salvar</button>
                         </div>
+                        <?php endif; ?>
                         
                     </form>
                 </div>

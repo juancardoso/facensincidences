@@ -8,6 +8,7 @@ class Model_login extends CI_Model {
     }
 
     public function loginUsuario($login,$password){
+        $this->db->where('user_status',1);
         $this->db->where('user_password',$password);
         $this->db->where('user_user',$login);
         $this->db->or_where('user_email',$login);
