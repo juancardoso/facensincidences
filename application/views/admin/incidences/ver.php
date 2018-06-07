@@ -137,7 +137,7 @@
         var visible = $('#visible').is(':checked') ? 'ADM' : 'TODOS';
         var incidence = '<?= $incidence->id ?>';
         var getUrl = window.location;
-        var base_url = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + '/';
+        // var base_url = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + '/';
         var url = base_url + 'admin/incidences/addComentarioAjax';
 
         $.post(url,{'mensagem':msg, 'visible':visible, 'incidence':incidence},function(data){
@@ -150,7 +150,7 @@
     function getComentarios(){
         var incidence = '<?= $incidence->id ?>';
         var getUrl = window.location;
-        var base_url = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + '/';
+        //var base_url = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + '/';
         var url = base_url + 'admin/incidences/getComentariosAjax';
 
         $.post(url,{'incidence':incidence},function(data){

@@ -68,7 +68,7 @@ $(document).ready(function () {
 
 function excluir(id){
     var getUrl = window.location;
-    var base_url = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + '/';
+    // var base_url = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + '/';
     if(confirm('Deseja realmente excluir este ticket?')){
         var url = base_url + 'usuarios/tickets/excluir/' + id; 
         $.get(url,function(data){

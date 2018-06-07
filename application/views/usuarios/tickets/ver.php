@@ -117,7 +117,7 @@
         var msg = $('#mensagem').val();
         var ticket = '<?= $ticket->id ?>';
         var getUrl = window.location;
-        var base_url = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + '/';
+        // var base_url = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + '/';
         var url = base_url + 'usuarios/tickets/addComentarioAjax';
 
         $.post(url,{'mensagem':msg, 'ticket':ticket},function(data){
@@ -130,7 +130,7 @@
     function getComentarios(){
         var ticket = '<?= $ticket->id ?>';
         var getUrl = window.location;
-        var base_url = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + '/';
+        // var base_url = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + '/';
         var url = base_url + 'usuarios/tickets/getComentariosAjax';
 
         $.post(url,{'ticket':ticket},function(data){

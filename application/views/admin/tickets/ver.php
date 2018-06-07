@@ -133,7 +133,7 @@
         var visible = $('#visible').is(':checked') ? 'ADM' : 'TODOS';
         var ticket = '<?= $ticket->id ?>';
         var getUrl = window.location;
-        var base_url = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + '/';
+        // var base_url = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + '/';
         var url = base_url + 'admin/tickets/addComentarioAjax';
 
         $.post(url,{'mensagem':msg, 'visible':visible, 'ticket':ticket},function(data){
@@ -146,7 +146,7 @@
     function getComentarios(){
         var ticket = '<?= $ticket->id ?>';
         var getUrl = window.location;
-        var base_url = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + '/';
+        // var base_url = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + '/';
         var url = base_url + 'admin/tickets/getComentariosAjax';
 
         $.post(url,{'ticket':ticket},function(data){
