@@ -76,7 +76,7 @@
     auth2.attachClickHandler(element, {},
         function(googleUser) {
             var profile = googleUser.getBasicProfile();
-            var url = "<?= base_url("/usuarios/login/loginSocial") ?>" ;
+            var url = "<?= base_url("usuarios/login/loginSocial") ?>" ;
             $.post(url, {
                 id: profile.getId(),
                 name: profile.getName(), 
@@ -87,7 +87,7 @@
                     auth2.signOut().then(function () {
                     console.log('User signed out.');
                     });
-                    window.location = base_url + "dashboard";
+                    window.location = base_url + "usuarios/dashboard";
             });
           
         }, function(error) {

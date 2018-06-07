@@ -14,8 +14,8 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
         <script>
 
-          base_url = window.location.protocol + "//" + window.location.host + "/" + window.location.pathname.split('/')[1] + '/';
-
+          // base_url = window.location.protocol + "//" + window.location.host + "/" + window.location.pathname.split('/')[1] + '/';
+          base_url = "<?= base_url(); ?>";
         </script>
         <title>Facens Incidences</title>
     </head>
