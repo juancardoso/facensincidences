@@ -3,7 +3,7 @@
 <div class="content-wrapper">
     <section class="content">
         <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-12">
                 <div class="row mt-4">
                     <div class="col-md-12">
                         <div class="box box-danger">
@@ -54,7 +54,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-5">
+            <!-- <div class="col-md-5">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row mt-4">
@@ -63,7 +63,6 @@
                                     <div class="box-header with-border">
                                         <h3 class="box-title">Tickets</h3>
                                     </div>
-                                    <!-- /.box-header -->
                                     <div class="box-body no-padding">
                                         <table class="table table-condensed">
                                             <?php foreach($arr AS $row): ?>
@@ -74,9 +73,7 @@
                                             <?php endforeach; ?>
                                         </table>
                                     </div>
-                                    <!-- /.box-body -->
                                 </div>
-                                <!-- /.box -->
                             </div>
                         </div>
                     </div> 
@@ -87,7 +84,6 @@
                                     <div class="box-header with-border">
                                         <h3 class="box-title">Tickets</h3>
                                     </div>
-                                    <!-- /.box-header -->
                                     <div class="box-body no-padding">
                                         <table class="table table-condensed">
                                             <?php foreach($arr AS $row): ?>
@@ -98,14 +94,12 @@
                                             <?php endforeach; ?>
                                         </table>
                                     </div>
-                                    <!-- /.box-body -->
                                 </div>
-                                <!-- /.box -->
                             </div>
                         </div>
                     </div>  
                 </div> 
-            </div>
+            </div> -->
         </div>
     </section>
 </div>
