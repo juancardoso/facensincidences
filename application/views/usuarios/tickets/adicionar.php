@@ -9,7 +9,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 <div class="box-body">
                     <div class="form-group">
                         <label for="titulo">Titulo</label>
@@ -27,12 +27,9 @@
                         <label for="descricao">Descricao</label>
                         <textarea class="form-control" id="descricao" name="descricao" rows="3"></textarea>
                     </div>
-                    <!-- <div class="form-group">
-                        <label for="exampleInputFile">File input</label>
-                        <input type="file" id="exampleInputFile">
-
-                        <p class="help-block">Example block-level help text here.</p>
-                    </div> -->
+                    <div class="form-group">
+                        <input type="file" name="imagem" id="imagem">
+                    </div>
                 </div>
               <!-- /.box-body -->
               <div class="box-footer">

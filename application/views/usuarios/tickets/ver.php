@@ -35,6 +35,11 @@
                         <textarea rows="5" class="form-control" id="descricao" readonly> <?= $ticket->descricao ?> </textarea>
                     </div>
 
+                    <div class="form-group col-sm-12">
+                        <label for="imagem">Imagem</label>
+                        <div><img src="<?= 'data:image/png;base64,'.$ticket->img64 ?>" alt="" /></div>
+                    </div>
+
                 </div>
 
                 <div class="comment-ticket panel-side panel col-sm-6">
