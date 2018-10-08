@@ -19,13 +19,46 @@ class Tickets extends MY_Controller {
 		$this->form_validation->set_rules('descricao','Descrição','trim|required');
 
 		if($this->form_validation->run()){
+
+			$target_dir = "uploads/";
+			$target_file = $target_dir . basename($_FILES["imagem"]["name"]);
+			$uploadOk = 1;
+			$extensaoDaImagem = pathinfo($target_file,PATHINFO_EXTENSION);
+			// Check if image file is a actual image or fake image
+			$check = getimagesize($_FILES["imagem"]["tmp_name"]);
+			if($check !== false) {
+				$uploadOk = 1;
+			} else {
+				$this->message->add_user('O arquivo não é uma imagem!','error');
+				$uploadOk = 0;
+			}
+			// verificar o tamanho do arquivo
+			if ($_FILES["imagem"]["size"] > 500000) {
+				$this->message->add_user('O arquivo excedeu o tamanho permitido!','error');
+				$uploadOk = 0;
+			}
+			// Permitir formatos expecificos de imagens
+			if($extensaoDaImagem != "jpg" && $extensaoDaImagem != "png" && $extensaoDaImagem != "jpeg"
+			&& $extensaoDaImagem != "gif" ) {
+				$this->message->add_user('Somente arquivos do tipo JPG, JPEG, PNG & GIF são permitidos!','error');
+				$uploadOk = 0;
+			}
+			// Check if $uploadOk is set to 0 by an error
+			if ($uploadOk == 0) {
+				$this->message->add_user('Sua imagem não pode ser enviada!','error');
+			// if everything is ok, try to upload file
+			} else {
+				$img = base64_encode(file_get_contents($_FILES["imagem"]["tmp_name"]));
+			}
+
 			$data = [
 				'tic_titulo' => $_POST['titulo'],
 				'tic_idlocalizacao' => $_POST['localizacao'],
 				'tic_iddepartamento' => $_POST['departamento'],
 				'tic_descricao' => $_POST['descricao'],
 				'tic_status' => 'PENDENTE',
-				'tic_idusuario' => $this->user->id
+				'tic_idusuario' => $this->user->id,
+				'tic_img64' => $img
 			];
 
 			$this->db->trans_begin();
