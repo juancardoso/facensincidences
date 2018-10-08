@@ -39,6 +39,19 @@
                             <label for="status">Status</label>
                             <input type="text" class="form-control" id="status" value="<?= $status[$incidence->status] ?>" readonly/>
                         </div>
+
+                        <div class="form-group col-sm-12">
+                            <label for="imagem">Imagem(ns)</label>
+                            <div class="row">
+                                <?php foreach($imagens AS $imagem):?>
+                                <div class="col-xs-2">
+                                    <div class="border">
+                                        <img width="100%" class="" src="<?= 'data:image/png;base64,'.$imagem->img ?>" alt="" />
+                                    </div>
+                                </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
                         
                     </form>
                 </div>

@@ -16,7 +16,7 @@
                                     <table class="table table-condensed">
                                         <?php foreach($arrTickets AS $row): ?>
                                             <tr>
-                                                <td style="width: 110px"><img src="http://placehold.it/90x90" width="90px" style="border-radius: 5px"></td>
+                                                <td style="width: 110px"><img src="<?= $row->img != NULL ?  'data:image/png;base64,'.$row->img : 'http://placehold.it/90x90' ?>" width="90px" style="border-radius: 5px"></td>
                                                 <td><?= $row->titulo ?></td>
                                                 <td><?= $row->descricao ?></td>
                                             </tr>
@@ -39,7 +39,7 @@
                                     <table class="table table-condensed">
                                         <?php foreach($arrIncidences AS $row): ?>
                                             <tr>
-                                                <td style="width: 110px"><img src="http://placehold.it/90x90" width="90px" style="border-radius: 5px"></td>
+                                                <td style="width: 110px"><img src="<?= $row->img != NULL ?  'data:image/png;base64,'.$row->img : 'http://placehold.it/90x90' ?>" width="90px" style="border-radius: 5px"></td>
                                                 <td><?= $row->departamento ?></td>
                                                 <td><?= $row->localizacao ?></td>
                                                 <td><?= $row->departamento ?></td>

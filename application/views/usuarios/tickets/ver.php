@@ -35,6 +35,20 @@
                         <textarea rows="5" class="form-control" id="descricao" readonly> <?= $ticket->descricao ?> </textarea>
                     </div>
 
+
+                    <div class="form-group col-sm-12">
+                        <label for="imagem">Imagem(ns)</label>
+                        <div class="row">
+                            <?php foreach($imagens AS $imagem):?>
+                            <div class="col-xs-2">
+                                <div class="border">
+                                    <img width="100%" class="" src="<?= 'data:image/png;base64,'.$imagem->img ?>" alt="" />
+                                </div>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="comment-ticket panel-side panel col-sm-6">
@@ -53,16 +67,6 @@
 
             </div>
 
-            <div class="container">
-                <label for="imagem">Imagem(ns)</label>
-                <div class="row">
-                    <?php foreach($imagens AS $imagem):?>
-                    <div class="col-xs-4 containerimg thumbnail">
-                        <img class="img-responsive" src="<?= 'data:image/png;base64,'.$imagem->img ?>" alt="" />
-                    </div>
-                    <?php endforeach; ?>
-                </div>
-            </div>
 
 
             <div class="box-footer center col-sm-12">
@@ -116,12 +120,6 @@
 
     .ticket-actions{
      
-    }
-
-    .containerimg {
-        width: 200px;
-        height: auto;
-        display: inline-block;
     }
 
     

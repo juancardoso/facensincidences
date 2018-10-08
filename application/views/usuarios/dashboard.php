@@ -15,8 +15,8 @@
                 <table class="table table-condensed">
                     <?php foreach($ultimasIncidences AS $row): ?>
                         <tr>
-                            <td rowspan="2"><img src="http://placehold.it/90x90" width="90px" style="border-radius: 5px"></td>
-                            <td><?= $row->titulo ?></td>
+                            <td rowspan="2"><img src="<?= $row->img != NULL ?  'data:image/png;base64,'.$row->img : 'http://placehold.it/90x90' ?>" width="90px" style="border-radius: 5px"></td>
+                            <td><b><?= $row->titulo ?></b></td>
                         </tr>
                         <tr>
                             <td><?= $row->descricao ?></td>
@@ -41,7 +41,7 @@
                     <table class="table table-condensed">
                         <?php foreach($ultimasIncidencesResolvidas AS $row): ?>
                             <tr>
-                                <td><img src="http://placehold.it/90x90" width="90px" style="border-radius: 5px"></td>
+                                <td><img src="<?= $row->img != NULL ?  'data:image/png;base64,'.$row->img : 'http://placehold.it/90x90' ?>" width="90px" style="border-radius: 5px"></td>
                                 <td><?= $row->titulo ?></td>
                             </tr>
                         <?php endforeach; ?>

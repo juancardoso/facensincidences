@@ -9,6 +9,7 @@ class Incidences extends MY_Controller {
         $this->load->model('Model_incidences','incidences');
         $this->load->model('Model_departamentos','departamentos');
 		$this->load->model('Model_localizacoes','localizacoes');
+		$this->load->model('Model_imagens','imagens');
     }
 
     public function index(){
@@ -33,6 +34,7 @@ class Incidences extends MY_Controller {
         }
         $status = $this->incidences->getStatus();
         $data['incidence'] = $incidence[0];
+		$data['imagens'] = $this->imagens->getImagens($incidence[0]->idticket);
         $data['status'] = $status;
         $data['localizacoes'] = $this->localizacoes->getSelect(FALSE);
 			$data['departamentos'] = $this->departamentos->getSelect(FALSE);

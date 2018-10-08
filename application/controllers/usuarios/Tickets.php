@@ -21,8 +21,7 @@ class Tickets extends MY_Controller {
 
 		if($this->form_validation->run()){
 
-			if(isset($_FILES["imagens"]) && count($_FILES["imagens"]) > 0) {
-				var_dump($_FILES["imagens"]);
+			if(isset($_FILES["imagens"]) && $_FILES["imagens"]['name'][0] != "") {
 				for($i = 0;$i < count($_FILES["imagens"]["name"]);$i++) {
 					$target_dir = "uploads/";
 					$target_file = $target_dir . basename($_FILES["imagens"]["name"][$i]);
@@ -69,14 +68,17 @@ class Tickets extends MY_Controller {
 			$this->db->trans_begin();
 			$id = $this->tickets->addTicket($data);
 
-			foreach($imgs AS $img){
-				$dataimg[] = [
-					'img_idTicket' => $id,
-					'img_img' => $img,
-				];
-			}
 
-			$this->imagens->addImagens($dataimg);
+			if(isset($imgs)) {
+				foreach($imgs AS $img){
+					$dataimg[] = [
+						'img_idTicket' => $id,
+						'img_img' => $img,
+					];
+				}
+	
+				$this->imagens->addImagens($dataimg);
+			}
 
 			if($this->db->trans_status()){
 				$this->db->trans_commit();
