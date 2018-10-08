@@ -16,11 +16,11 @@
     <?= $this->message->get_user(); ?>
 
     <form action="" method="post" enctype="multipart/form-data">
-      <div class="form-group has-feedback">
-        <img width="90" src=<?= $this->user->img ?> class="img-circle" alt="User Image">
+      <!-- <div class="form-group has-feedback">
+        <img width="90" src=<?//= $this->user->img ?> class="img-circle" alt="User Image">
         <label for="files" class="btn btn-info">Trocar Imagem</label>
         <input id="files" style="visibility:hidden;" name="imagemPerfil" type="file">        
-      </div>
+      </div> -->
       <div class="form-group has-feedback">
         <label>Nome</label>
         <input type="text" name="nome" class="form-control" required placeholder="Nome Completo" value="<?= $user->nome ?>">

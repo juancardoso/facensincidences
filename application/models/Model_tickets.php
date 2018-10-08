@@ -14,7 +14,7 @@ class Model_tickets extends CI_Model {
 
     public function getTickets($idUser, $idTicket = FALSE){
         
-        $this->db->select('tic_id id, tic_titulo titulo, tic_descricao descricao, dep_nome departamento, dep_id id_departamento, loc_nome localizacao, loc_id id_localizacao, tic_data data, tic_status status, tic_img64 img64');
+        $this->db->select('tic_id id, tic_titulo titulo, tic_descricao descricao, dep_nome departamento, dep_id id_departamento, loc_nome localizacao, loc_id id_localizacao, tic_data data, tic_status status');
         $this->db->select('u.user_user usuario, u.user_name nome');
         $this->db->join('usuarios u','user_id = tic_idusuario');
         $this->db->join('localizacoes','loc_id = tic_idlocalizacao');

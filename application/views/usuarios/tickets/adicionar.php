@@ -28,7 +28,7 @@
                         <textarea class="form-control" id="descricao" name="descricao" rows="3"></textarea>
                     </div>
                     <div class="form-group">
-                        <input type="file" name="imagem" id="imagem">
+                        <input type="file" name="imagens[]" id="imagens" multiple>
                     </div>
                 </div>
               <!-- /.box-body -->

@@ -35,11 +35,6 @@
                         <textarea rows="5" class="form-control" id="descricao" readonly> <?= $ticket->descricao ?> </textarea>
                     </div>
 
-                    <div class="form-group col-sm-12">
-                        <label for="imagem">Imagem</label>
-                        <div><img src="<?= 'data:image/png;base64,'.$ticket->img64 ?>" alt="" /></div>
-                    </div>
-
                 </div>
 
                 <div class="comment-ticket panel-side panel col-sm-6">
@@ -57,6 +52,18 @@
                 </div>
 
             </div>
+
+            <div class="container">
+                <label for="imagem">Imagem(ns)</label>
+                <div class="row">
+                    <?php foreach($imagens AS $imagem):?>
+                    <div class="col-xs-4 containerimg thumbnail">
+                        <img class="img-responsive" src="<?= 'data:image/png;base64,'.$imagem->img ?>" alt="" />
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+
 
             <div class="box-footer center col-sm-12">
                 <a class="btn btn-sm btn-danger" href="<?= base_url("usuarios/tickets/excluir/{$ticket->id}/1") ?>">Excluir Ticket</a>
@@ -110,6 +117,14 @@
     .ticket-actions{
      
     }
+
+    .containerimg {
+        width: 200px;
+        height: auto;
+        display: inline-block;
+    }
+
+    
 </style>
 
 <script>
