@@ -42,7 +42,10 @@
                             <?php foreach($imagens AS $imagem):?>
                             <div class="col-xs-2">
                                 <div class="border">
-                                    <img width="100%" class="" src="<?= 'data:image/png;base64,'.$imagem->img ?>" alt="" />
+                                <?php $img = 'data:image/png;base64,'.$imagem->img ?>
+                                    <a href="<?= $img ?>" target="_blank">
+                                        <img width="100%" class="" src="<?= $img ?>" alt="" />
+                                    </a>
                                 </div>
                             </div>
                             <?php endforeach; ?>
@@ -70,7 +73,7 @@
 
 
             <div class="box-footer center col-sm-12">
-                <a class="btn btn-sm btn-danger" href="<?= base_url("usuarios/tickets/excluir/{$ticket->id}/1") ?>">Excluir Ticket</a>
+                <a class="btn btn-sm btn-danger" href="<?= base_url("usuarios/tickets/excluir/{$ticket->id}/1") ?>" onclick="bloquear()">Excluir Ticket</a>
             </div>
 
         </div>
