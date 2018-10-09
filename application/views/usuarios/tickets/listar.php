@@ -30,7 +30,7 @@
                                 <td><?= $row->localizacao ?></td>
                                 <td><?= $row->departamento ?></td>
                                 <td><?= $row->status ?></td>
-                                <td><a class="btn btn-sm btn-info" href="<?= base_url('usuarios/tickets/ver/'.$row->id) ?>">Ver</a></td>
+                                <td><a class="btn btn-sm btn-info" href="<?= base_url('usuarios/tickets/ver/'.$row->id) ?>" onclick="bloquear()">Ver</a></td>
                                 <td><?= ($row->status == 'PENDENTE') ? '<a class="btn btn-sm btn-danger" href="#" onclick="excluir('.$row->id.')">Excluir</a>': "" ?></td>
                             </tr>
                         <?php endforeach; ?>

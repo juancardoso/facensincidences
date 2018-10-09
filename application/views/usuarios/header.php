@@ -34,10 +34,10 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="<?= $active === 'dashboard' ? 'active' : '' ?>"><a href="<?= base_url('usuarios/dashboard') ?>">Home <span class="sr-only">(current)</span></a></li>
-            <li class="<?= $active === 'listarIncidencias' ? 'active' : '' ?>"><a href="<?= base_url('usuarios/incidences/listar') ?>">Listar Incidências</a></li>
-            <li class="<?= $active === 'criarTicket' ? 'active' : '' ?>"><a href="<?= base_url('usuarios/tickets/adicionar') ?>">Criar Ticket</a></li>
-            <li class="<?= $active === 'meusTicket' ? 'active' : '' ?>"><a href="<?= base_url('usuarios/tickets/listar') ?>">Meus Tickets</a></li>
+            <li class="<?= $active === 'dashboard' ? 'active' : '' ?>"><a href="<?= base_url('usuarios/dashboard') ?>" onclick="bloquear()">Home <span class="sr-only">(current)</span></a></li>
+            <li class="<?= $active === 'listarIncidencias' ? 'active' : '' ?>"><a href="<?= base_url('usuarios/incidences/listar') ?>" onclick="bloquear()">Listar Incidências</a></li>
+            <li class="<?= $active === 'criarTicket' ? 'active' : '' ?>"><a href="<?= base_url('usuarios/tickets/adicionar') ?>" onclick="bloquear()">Criar Ticket</a></li>
+            <li class="<?= $active === 'meusTicket' ? 'active' : '' ?>"><a href="<?= base_url('usuarios/tickets/listar') ?>" onclick="bloquear()">Meus Tickets</a></li>
           </ul>
         </div>
         <!-- /.navbar-collapse -->

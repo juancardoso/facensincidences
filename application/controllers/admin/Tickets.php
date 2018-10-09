@@ -7,6 +7,7 @@ class Tickets extends MY_Controller {
     {
 		parent::__construct();
 		$this->load->model('Model_tickets','tickets');
+		$this->load->model('Model_imagens','imagens');
     }
 
     public function index(){
@@ -30,6 +31,7 @@ class Tickets extends MY_Controller {
         }
         
         $data['ticket'] = $ticket[0];
+		$data['imagens'] = $this->imagens->getImagens($ticket[0]->id);
         $data['titulo'] = 'Tickets -> Ver';
 		$data['active'] = 'ticket';
 		$this->load->view('admin/tickets/ver',$data);

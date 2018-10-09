@@ -40,6 +40,19 @@
                             <?= form_dropdown('status',$status,$incidence->status,'class="form-control" required '.($incidence->status !== "CONCLUIDO"? "":"readonly")) ?>
                         </div>
 
+                        <div class="form-group col-sm-12">
+                            <label for="imagem">Imagem(ns)</label>
+                            <div class="row">
+                                <?php foreach($imagens AS $imagem):?>
+                                <div class="col-xs-2">
+                                    <div class="border">
+                                        <img width="100%" class="" src="<?= 'data:image/png;base64,'.$imagem->img ?>" alt="" />
+                                    </div>
+                                </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+
                         <?php if($incidence->status !== "CONCLUIDO"): ?>
                         <div class="incidence-actions panel center col-sm-12">
                             <button class="btn btn-sm btn-success" type="submit">Salvar</button>

@@ -31,8 +31,9 @@ class Model_incidences extends CI_Model {
     }
 
     public function getAllIncidences($idIncidence = FALSE, $status = FALSE, $orderby = FALSE, $limit = FALSE){
-        $this->db->select('inc_id id, inc_titulo titulo, dep_nome departamento, dep_id id_departamento, loc_nome localizacao, loc_id id_localizacao, inc_descricao descricao, inc_status status');
+        $this->db->select('inc_id id, inc_titulo titulo, dep_nome departamento, dep_id id_departamento, loc_nome localizacao, loc_id id_localizacao, inc_descricao descricao, inc_status status, inc_idticket idticket');
         $this->db->select('u.admin_user usuario, u.admin_name nome');
+        $this->db->select('(SELECT img_img img FROM imagens WHERE inc_idticket = img_idTicket LIMIT 1) AS img');
         $this->db->join('admin u','admin_id = inc_idadmin');
         $this->db->join('localizacoes','loc_id = inc_idlocalizacao');
         $this->db->join('departamentos','dep_id = inc_iddepartamento');

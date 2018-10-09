@@ -34,6 +34,7 @@ class Model_tickets extends CI_Model {
 
         $this->db->select('tic_id id, tic_titulo titulo, tic_descricao descricao, dep_nome departamento, dep_id id_departamento, loc_nome localizacao, loc_id id_localizacao, tic_data data, tic_status status');
         $this->db->select('u.user_user usuario, u.user_name nome');
+        $this->db->select('(SELECT img_img img FROM imagens WHERE tic_id = img_idTicket LIMIT 1) AS img');
         $this->db->join('usuarios u','user_id = tic_idusuario');
         $this->db->join('localizacoes','loc_id = tic_idlocalizacao');
         $this->db->join('departamentos','dep_id = tic_iddepartamento');
