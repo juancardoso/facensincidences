@@ -1,6 +1,6 @@
 <?php
 
-class testeApi{
+class TesteApi extends CI_Controller {
 
     public function index(){
         $valid_passwords = array ("juan" => "testando123#*!");
