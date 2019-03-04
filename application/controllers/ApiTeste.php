@@ -27,6 +27,6 @@ class ApiTeste extends CI_Controller {
         $json["ibge"]        = "123456789";
         $json["gia"]         = "123456789";
 
-        return json_encode($json);
+        echo json_encode($json);
     }
 }
