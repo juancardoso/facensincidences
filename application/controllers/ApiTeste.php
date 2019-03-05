@@ -2,21 +2,26 @@
 
 class ApiTeste extends CI_Controller {
 
+    public function __construct()
+    {
+      parent::__construct();
+      
+      $valid_passwords = array ("juan" => "testando123#*!");
+      $valid_users = array_keys($valid_passwords);
+      
+      $user = $_SERVER['PHP_AUTH_USER'];
+      $pass = $_SERVER['PHP_AUTH_PW'];
+
+      $validated = (in_array($user, $valid_users)) && ($pass == $valid_passwords[$user]);
+
+      if (!$validated) {
+          header('WWW-Authenticate: Basic realm="My Realm"');
+          header('HTTP/1.0 401 Unauthorized');
+          die ("Not authorized");
+      }
+    }
+
     public function index(){
-        $valid_passwords = array ("juan" => "testando123#*!");
-        $valid_users = array_keys($valid_passwords);
-        
-        $user = $_SERVER['PHP_AUTH_USER'];
-        $pass = $_SERVER['PHP_AUTH_PW'];
-
-        $validated = (in_array($user, $valid_users)) && ($pass == $valid_passwords[$user]);
-
-        if (!$validated) {
-            header('WWW-Authenticate: Basic realm="My Realm"');
-            header('HTTP/1.0 401 Unauthorized');
-            die ("Not authorized");
-        }
-
         $json["cep"]         = "0000-000";
         $json["logradouro"]  = "Rua dos paralelepípedos";
         $json["complemento"] = "Predio x4";
@@ -27,6 +32,23 @@ class ApiTeste extends CI_Controller {
         $json["ibge"]        = "123456789";
         $json["gia"]         = "123456789";
 
+        http_response_code(200);
+        echo json_encode($json);
+    }
+
+    public function teste(){
+        $json["cep"]         = "0000-000";
+        $json["logradouro"]  = "Rua dos paralelepípedos";
+        $json["complemento"] = "Predio x4";
+        $json["bairro"]      = "São Gonçalo";
+        $json["localidade"]  = "S\u00e3o Paulo";
+        $json["uf"]          = "SP";
+        $json["unidade"]     = "12344321";
+        $json["ibge"]        = "123456789";
+        $json["gia"]         = "123456789";
+
+        header('WWW-Authenticate: Basic realm="Testes"');
+        header('HTTP/1.0 200 OK');
         echo json_encode($json);
     }
 }
