@@ -50,11 +50,8 @@ class ApiTeste extends CI_Controller {
     public function postRead(){
         $post = $this->session->userdata('postTeste');
         
-        if($post){
-            var_dump($post);
-        }else{
-            var_dump("Oops");
-        }
+        var_dump($post);
+        var_dump("End");
     }
 
 }
