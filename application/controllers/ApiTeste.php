@@ -36,19 +36,25 @@ class ApiTeste extends CI_Controller {
         echo json_encode($json);
     }
 
-    public function teste(){
-        $json["cep"]         = "0000-000";
-        $json["logradouro"]  = "Rua dos paralelepípedos";
-        $json["complemento"] = "Predio x4";
-        $json["bairro"]      = "São Gonçalo";
-        $json["localidade"]  = "S\u00e3o Paulo";
-        $json["uf"]          = "SP";
-        $json["unidade"]     = "12344321";
-        $json["ibge"]        = "123456789";
-        $json["gia"]         = "123456789";
-
-        header('WWW-Authenticate: Basic realm="Testes"');
-        header('HTTP/1.0 200 OK');
-        echo json_encode($json);
+    public function postAction(){
+        
+        if(isset($_POST)){
+            $this->session->set_userdata('postTeste',$_POST);
+            echo "OK";
+        }else{
+            echo "FAIL";
+        }
+            		
     }
+
+    public function postRead(){
+        $post = $this->session->userdata('postTeste');
+        
+        if($post){
+            var_dump($post);
+        }else{
+            var_dump("Oops");
+        }
+    }
+
 }
